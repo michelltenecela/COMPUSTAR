@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //probando
+
         val btnEntrar: Button = findViewById(R.id.btnIniciarSesion)
         val txtemail : TextView = findViewById(R.id.txtUsuario)
         val txtpass : TextView = findViewById(R.id.txtClave)
