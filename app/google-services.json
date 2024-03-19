@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "256990306220",
+    "project_id": "compustar-d7e00",
+    "storage_bucket": "compustar-d7e00.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:256990306220:android:de66823ce06589d8e42409",
+        "android_client_info": {
+          "package_name": "com.example.compustar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjy1ya2fQerdBtkD9LOQJ51PGSrPIopxs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

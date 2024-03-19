@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_Home"
+        android:icon="@drawable/homeb"
+        android:title="Inicio" />
+
+    <item
+        android:id="@+id/nav_Agregar"
+        android:icon="@drawable/agregarb"
+        android:title="Agregar" />
+
+    <item
+        android:id="@+id/nav_Equipo"
+        android:icon="@drawable/equipob"
+        android:title="Equipos" />
+</menu>
