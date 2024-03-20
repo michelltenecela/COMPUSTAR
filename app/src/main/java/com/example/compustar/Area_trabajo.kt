@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 
 
@@ -13,6 +14,14 @@ class Area_trabajo : Fragment(R.layout.fragment_area_trabajo) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val bundle = arguments
+        val id_area = bundle?.getString("id_area") ?: ""
+        val area_nombre = bundle?.getString("area_nombre") ?: ""
+
+        val txtTitulo : TextView = view.findViewById(R.id.txtTitulo)
+
+        txtTitulo.text = area_nombre
 
         val crdFiltro : CardView = view.findViewById(R.id.crdFiltro)
         crdFiltro.visibility = View.GONE

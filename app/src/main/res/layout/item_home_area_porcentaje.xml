@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llArea"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="5dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/flprogreso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <ProgressBar
+            android:id="@+id/pbArea"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:indeterminateOnly="false"
+            android:progress="60"
+            android:progressDrawable="@drawable/progreso_circular" />
+
+        <TextView
+            android:id="@+id/txtPorcentaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="60%"
+            android:textColor="#CB2027"
+            android:textSize="16sp" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/txtArea"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="2"
+        android:text="Aula 1"
+        android:textAlignment="center"
+        android:textColor="#CB2027"
+        android:textSize="16sp" />
+</LinearLayout>

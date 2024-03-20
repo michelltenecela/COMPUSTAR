@@ -3,7 +3,12 @@ package com.example.compustar.Modelo
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 
-class Trabajador {
+class Trabajador( val id_trabajador: String,
+                  val email: String,
+                  val nombre: String,
+                  val cedula: String,
+                  val contraseña: String,
+                  val id_area: String) {
     private val TAG = "FirestoreManager"
     private var db: FirebaseFirestore? = null
 
@@ -11,13 +16,14 @@ class Trabajador {
         db = FirebaseFirestore.getInstance()
     }
 
-    fun addTrabajador(email: String, nombre: String, cedula: String, contraseña: String) {
+    fun addTrabajador(email: String, nombre: String, cedula: String, contraseña: String, id_area: String) {
         val db = FirebaseFirestore.getInstance()
         val trabajador = hashMapOf(
             "email" to email,
             "nombre" to nombre,
             "cedula" to cedula,
-            "contraseña" to contraseña
+            "contraseña" to contraseña,
+            "id_area" to id_area
         )
 
         db?.collection("trabajadores")?.add(trabajador)

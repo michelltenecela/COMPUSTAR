@@ -227,7 +227,7 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
-                            android:id="@+id/llArea1"
+                            android:id="@+id/llArea"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="5dp"
@@ -287,72 +287,8 @@
                         android:textStyle="bold" />
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/crdEquipo"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="16dp"
-                        app:cardBackgroundColor="#FFFFFF">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/linear_layout_border"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/linear_layout_border"
-                                android:orientation="horizontal">
-
-                                <ImageView
-                                    android:id="@+id/imageView3"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"
-                                    android:padding="5dp"
-                                    android:src="@drawable/ref_laptop" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/textView10"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="Jaime Anderson"
-                                    android:textColor="#000000"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:id="@+id/textView11"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="0/4 Tareas realizadas" />
-
-                                <ProgressBar
-                                    android:id="@+id/progressBar"
-                                    style="?android:attr/progressBarStyleHorizontal"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="16dp"
