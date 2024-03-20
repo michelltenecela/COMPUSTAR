@@ -44,6 +44,23 @@ class EquiposAreaAdapter(private val equipo: List<Equipo>, private val onItemCli
             holder.nombre.text = task.getString("nombre") ?: ""
         }
 
+        val collectionTarea = db?.collection("tareas")
+        collectionTarea?.whereEqualTo("id_equipo", equipoDato.idEquipo)?.get()?.addOnSuccessListener { result ->
+            var cantidadTareas = 0
+            var tareasCompletadas = 0
+            for (tareaDocument in result) {
+                val estado = tareaDocument.getBoolean("estado") ?: false
+                cantidadTareas++
+                if (!estado) {
+                    tareasCompletadas++
+                }
+            }
+            holder.tareas.text = tareasCompletadas.toString() + "/" + cantidadTareas.toString() + "Tareas realizadas"
+            holder.pbtareas.progress = ((tareasCompletadas.toFloat()/cantidadTareas.toFloat())*100).toInt()
+        }?.addOnFailureListener { exception ->
+            Log.w("Error: ", "Error getting documents: ", exception)
+        }
+
     }
 
     override fun getItemCount(): Int {

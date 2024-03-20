@@ -22,20 +22,7 @@ class Equipo(
     private var db: FirebaseFirestore? = null
     var globalEquipoId: String? = null
 
-    fun addEquipo(
-        idCliente: String, // Cambiado a String para simplificar, ajusta según tu necesidad
-        idTrabajador: String, // Cambiado a String para simplificar, ajusta según tu necesidad
-        nIngreso: String,
-        equipo: String,
-        nSerie: String,
-        marca: String,
-        modelo: String,
-        fechaIngreso: String,
-        fechaFinalizacion: String,
-        falla: String,
-        observacion: String, // Corregido el nombre del campo
-        estado: Boolean
-    ) {
+    fun addEquipo(){
         val db = FirebaseFirestore.getInstance()
         val equipoData = hashMapOf(
             "id_cliente" to idCliente,

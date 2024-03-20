@@ -58,7 +58,10 @@
                 android:id="@+id/pbTareas"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:progress="20"
+                android:progressTint="#CB2027"
+                android:progressBackgroundTint="#FFF1EE"/>
         </LinearLayout>
 
     </LinearLayout>
