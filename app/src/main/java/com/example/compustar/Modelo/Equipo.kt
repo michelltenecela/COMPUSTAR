@@ -3,7 +3,21 @@ package com.example.compustar.Modelo
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 
-class Equipo {
+class Equipo(
+    val idEquipo: String,
+    val idCliente: String, // Cambiado a String para simplificar, ajusta según tu necesidad
+    val idTrabajador: String, // Cambiado a String para simplificar, ajusta según tu necesidad
+    val nIngreso: String,
+    val equipo: String,
+    val nSerie: String,
+    val marca: String,
+    val modelo: String,
+    val fechaIngreso: String,
+    val fechaFinalizacion: String,
+    val falla: String,
+    val observacion: String, // Corregido el nombre del campo
+    val estado: Boolean
+) {
     private val TAG = "FirestoreManager"
     private var db: FirebaseFirestore? = null
     var globalEquipoId: String? = null

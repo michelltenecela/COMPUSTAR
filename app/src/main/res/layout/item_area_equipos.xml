@@ -22,7 +22,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imgFoto"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="5dp"
@@ -39,7 +39,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/txtNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -49,13 +49,13 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/txtTareas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="0/4 Tareas realizadas" />
 
             <ProgressBar
-                android:id="@+id/progressBar"
+                android:id="@+id/pbTareas"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

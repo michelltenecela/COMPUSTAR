@@ -69,11 +69,11 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
 
     private fun Enviar(){
         val cliente = Cliente()
-        val equipo = Equipo()
+        //val equipo = Equipo()
         val tarea = Tarea()
 
         cliente.addCliente(textViewNombre.text.toString(),textViewCedula.text.toString(),textViewTelefono.text.toString())
-        equipo.addEquipo("hola","hola",
+        /*equipo.addEquipo("hola","hola",
             textViewIngreso.text.toString(),
             textViewEquipo.text.toString(),
             textViewSerie.text.toString(),
@@ -81,7 +81,7 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
             textViewModelo.text.toString(),
             textViewFecha.text.toString(),textViewFecha.text.toString(),
             textViewFalla.text.toString(),
-            textViewObservacion.text.toString(),estado = false)
+            textViewObservacion.text.toString(),estado = false)*/
 
         tarea.addTarea("hola","hola","","",false)
 

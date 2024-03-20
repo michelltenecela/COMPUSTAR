@@ -65,7 +65,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
         rcvAreaDetalle.adapter = adapterAreaDetalle
 
-        // Leer datos de Firebase
         readArea()
     }
 
