@@ -2,6 +2,7 @@ package com.example.compustar.Modelo
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.tasks.await
 
 class Trabajador( val id_trabajador: String,
                   val email: String,
@@ -12,8 +13,30 @@ class Trabajador( val id_trabajador: String,
     private val TAG = "FirestoreManager"
     private var db: FirebaseFirestore? = null
 
-    fun Trabajador() {
-        db = FirebaseFirestore.getInstance()
+    fun readUsers(
+        onSuccess: (List<Trabajador>) -> Unit, // Callback para manejar el éxito
+        onFailure: (Exception) -> Unit // Callback para manejar el fallo
+    ) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("trabajadores").get()
+            .addOnSuccessListener { result ->
+                val users = mutableListOf<Trabajador>()
+                for (document in result) {
+                    val user = Trabajador(
+                        id_trabajador = document.id,
+                        email = document.getString("email") ?: "",
+                        nombre = document.getString("nombre") ?: "",
+                        cedula = document.getString("cedula") ?: "",
+                        tipo = document.getString("tipo") ?: "",
+                        id_area = document.getString("id_area") ?: ""
+                    )
+                    users.add(user)
+                }
+                onSuccess(users) // Llama al callback con la lista de usuarios
+            }
+            .addOnFailureListener { e ->
+                onFailure(e) // Llama al callback de fallo con la excepción
+            }
     }
 
     fun addTrabajador(){
@@ -36,22 +59,6 @@ class Trabajador( val id_trabajador: String,
             }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error al añadir documento", e)
-            }
-    }
-
-    fun readUsers() {
-        val db = FirebaseFirestore.getInstance()
-        val collection = db?.collection("trabajadores")
-
-        collection?.get()
-            ?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    for (document in task.result) {
-                        Log.d(TAG, "${document.id} => ${document.data}")
-                    }
-                } else {
-                    Log.w(TAG, "Error getting documents.", task.exception)
-                }
             }
     }
 

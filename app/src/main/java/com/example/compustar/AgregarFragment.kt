@@ -14,17 +14,21 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.compustar.Modelo.Cliente
 import com.example.compustar.Modelo.Equipo
 import com.example.compustar.Modelo.Tarea
+import com.example.compustar.Modelo.Trabajador
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.firestore.FirebaseFirestore
 import com.tom_roush.pdfbox.android.PDFBoxResourceLoader
 import com.tom_roush.pdfbox.pdmodel.PDDocument
 import com.tom_roush.pdfbox.text.PDFTextStripper
+import kotlinx.coroutines.launch
 import org.bouncycastle.util.Arrays.append
 import java.io.IOException
 
@@ -71,15 +75,25 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
         }
 
         btnAgregarBD.setOnClickListener {
-            val items = arrayOf("orlando", "josue", "rei")
 
-            MaterialAlertDialogBuilder(requireContext())
-                .setTitle("R.string.title")
-                .setItems(items) { dialog, which ->
-                    // Respond to item chosen
+            val trabajador = Trabajador("","","","","","")
+            trabajador.readUsers(
+                onSuccess = { users ->
+                    // Extrayendo nombres de usuario para mostrar en el diálogo
+                    val userNames = users.map { it.nombre }.toTypedArray()
+
+                    MaterialAlertDialogBuilder(requireContext())
+                        .setTitle("Selecciona un usuario")
+                        .setItems(userNames) { dialog, which ->
+                            val selectedUserId = users[which].id_trabajador
+                            Enviar(selectedUserId)
+                        }
+                        .show()
+                },
+                onFailure = { exception ->
+                    Toast.makeText(requireContext(), "Error al obtener usuarios", Toast.LENGTH_SHORT).show()
                 }
-                .show()
-            Enviar()
+            )
         }
     }
 
@@ -107,15 +121,15 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
         return chipTexts
     }
 
-    private fun Enviar(){
+    private fun Enviar(trabajador: String){
         val cliente = Cliente()
         val equipo = Equipo("","","",
             "","","","","","","","","",false)
-        val tarea = Tarea("","","","","",true)
+        val tarea = Tarea("","","","","",false)
 
         cliente.addCliente(textViewNombre.text.toString(),textViewCedula.text.toString(),
             textViewTelefono.text.toString(),onSuccess = { clienteId ->
-                equipo.addEquipo(clienteId,"",
+                equipo.addEquipo(clienteId,trabajador,
                     textViewIngreso.text.toString(),
                     textViewEquipo.text.toString(),
                     textViewSerie.text.toString(),

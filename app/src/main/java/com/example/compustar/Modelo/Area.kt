@@ -33,8 +33,9 @@ class Area(
             }
             .addOnFailureListener { exception ->
                 onFailure(exception) // Llama al callback de fallo con la excepción
-                }
-        }
+            }
+    }
+
 
     fun addArea(nombre: String, estado: Boolean) {
         val db = FirebaseFirestore.getInstance()

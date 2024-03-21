@@ -20,6 +20,9 @@
             android:name=".VistaTrabajador"
             android:exported="false" />
         <activity
+            android:name=".AgregarUsuario"
+            android:exported="false" />
+        <activity
             android:name=".Navegador"
             android:exported="false" />
         <activity
