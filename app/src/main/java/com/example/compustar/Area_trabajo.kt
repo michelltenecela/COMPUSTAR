@@ -39,11 +39,16 @@ class Area_trabajo : Fragment(R.layout.fragment_area_trabajo) {
 
         rcvEquipos = view.findViewById(R.id.rcvEquipos)
         rcvEquipos.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        adapter = EquiposAreaAdapter(equipoList){id, view ->
+        adapter = EquiposAreaAdapter(equipoList){id, view, cliente, trabajador ->
             val data = equipoList.find { it.idEquipo == id }
             if (data != null){
                 val bundle = Bundle()
-                bundle.putString("id_tarea", data.idEquipo)
+                bundle.putString("id_equipo", data.idEquipo)
+                bundle.putString("cliente", cliente)
+                bundle.putString("trabajador", trabajador)
+                bundle.putString("falla", data.falla)
+                bundle.putString("fecha", data.fechaIngreso)
+                bundle.putString("observacion", data.observacion)
                 val fragment = Equipo_PerfilFragment()
                 fragment.arguments = bundle
                 val fragmentManager = requireActivity().supportFragmentManager

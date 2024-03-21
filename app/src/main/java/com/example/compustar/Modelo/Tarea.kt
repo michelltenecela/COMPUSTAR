@@ -3,17 +3,18 @@ package com.example.compustar.Modelo
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 
-class Tarea {
+class Tarea(
+    val idTarea: String,
+    val idEquipo: String,
+    val falla: String,
+    val descripcion: String,
+    val fechaFinalizacion: String,
+    val estado: Boolean) {
+
     private val TAG = "FirestoreManager"
     private var db: FirebaseFirestore? = null
 
-    fun addTarea(
-        idEquipo: String, // Cambiado a String para simplificar, ajusta según tu necesidad
-        falla: String,
-        descripcion: String,
-        fechaFinalizacion: String,
-        estado: Boolean
-    ) {
+    fun addTarea() {
         val db = FirebaseFirestore.getInstance()
         val tareaData = hashMapOf(
             "id_equipo" to idEquipo,

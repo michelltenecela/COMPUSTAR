@@ -68,7 +68,7 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
         val cliente = Cliente()
         val equipo = Equipo("","","",
             "","","","","","","","","",false)
-        val tarea = Tarea()
+        val tarea = Tarea("","","","","",false)
 
         cliente.addCliente(textViewNombre.text.toString(),textViewCedula.text.toString(),
             textViewTelefono.text.toString(),onSuccess = { clienteId ->
@@ -82,7 +82,7 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
                     textViewFalla.text.toString(),
                     textViewObservacion.text.toString(),estado = false,
                     onSuccess = { equipoId ->
-                        tarea.addTarea(equipoId,"","","",false)
+                        tarea.addTarea()
                         limpiar()
                     },
                     onFailure = { exception ->
