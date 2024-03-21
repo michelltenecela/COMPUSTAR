@@ -17,6 +17,9 @@ import com.example.compustar.Adaptador.TareaAdapter
 import com.example.compustar.Modelo.Equipo
 import com.example.compustar.Modelo.Tarea
 import com.example.compustar.Modelo.Trabajador
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
 
 class Equipo_PerfilFragment : Fragment(R.layout.fragment_equipo_perfil) {
@@ -49,7 +52,7 @@ class Equipo_PerfilFragment : Fragment(R.layout.fragment_equipo_perfil) {
         txtFecha.text = fecha
 
         rcvTareas = view.findViewById(R.id.rcvTareas)
-        rcvTareas.layoutManager = GridLayoutManager(requireContext(), 3)
+        rcvTareas.layoutManager = FlexboxLayoutManager(requireContext(), FlexDirection.ROW, FlexWrap.WRAP)
 
         adapter = TareaAdapter(tareaList)
         rcvTareas.adapter = adapter

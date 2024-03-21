@@ -27,7 +27,7 @@ class TareaAdapter(private val tarea: List<Tarea>) : RecyclerView.Adapter<TareaA
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: TareaViewHolder, position: Int) {
         val data = tarea[position]
-        holder.tarea.text = data.descripcion
+        holder.tarea.text = data.falla
         if(data.estado){
             holder.estado.setImageResource(R.drawable.tarea_terminada)
         }else{
