@@ -15,7 +15,7 @@ import com.example.compustar.Modelo.Trabajador
 import com.example.compustar.R
 import com.google.firebase.firestore.FirebaseFirestore
 
-class AreaPorcentajeAdapter(private val area: List<Area>, private val onItemClick: (String, View) -> Unit) : RecyclerView.Adapter<AreaPorcentajeAdapter.AreaViewHolder>() {
+class AreaPorcentajeAdapter(private val area: List<Area>, private val onItemClick: (String, View, Int, Int) -> Unit) : RecyclerView.Adapter<AreaPorcentajeAdapter.AreaViewHolder>() {
 
 
     class AreaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -33,9 +33,11 @@ class AreaPorcentajeAdapter(private val area: List<Area>, private val onItemClic
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: AreaViewHolder, position: Int) {
         val areaDato = area[position]
+        var cantidadEquipos = 0
+        var equiposReparados = 0
         holder.nombre.text = areaDato.nombre
         holder.itemView.setOnClickListener {
-            onItemClick(areaDato.id_area,it)
+            onItemClick(areaDato.id_area,it,cantidadEquipos,equiposReparados)
         }
 
         val db = FirebaseFirestore.getInstance()
@@ -43,8 +45,7 @@ class AreaPorcentajeAdapter(private val area: List<Area>, private val onItemClic
         collection?.get()?.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val trabajadorRead = mutableListOf<Trabajador>()
-                var cantidadEquipos = 0
-                var equiposReparados = 0
+
                 for (document in task.result) {
                     val nombre = document.getString("nombre") ?: ""
                     val cedula = document.getString("cedula") ?: ""
@@ -68,8 +69,10 @@ class AreaPorcentajeAdapter(private val area: List<Area>, private val onItemClic
                                 equiposReparados++
                             }
                         }
-                        holder.porcentaje.text = ((equiposReparados.toFloat()/cantidadEquipos.toFloat())*100).toInt().toString() + "%"
-                        holder.pbporcentaje.progress = ((equiposReparados.toFloat()/cantidadEquipos.toFloat())*100).toInt()
+                        if (cantidadEquipos!= 0){
+                            holder.porcentaje.text = ((equiposReparados.toFloat()/cantidadEquipos.toFloat())*100).toInt().toString() + "%"
+                            holder.pbporcentaje.progress = ((equiposReparados.toFloat()/cantidadEquipos.toFloat())*100).toInt()
+                        }
                     }?.addOnFailureListener { exception ->
                         Log.w("Error: ", "Error getting documents: ", exception)
                     }

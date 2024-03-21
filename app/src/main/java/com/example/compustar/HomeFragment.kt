@@ -6,6 +6,8 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,16 +29,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val txtPorcentaje : TextView = view.findViewById(R.id.txtPorcentaje)
+        val pbPorcentaje : ProgressBar = view.findViewById(R.id.pbtotalArea)
+
         recyclerView = view.findViewById(R.id.rcvArea)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
         rcvAreaDetalle = view.findViewById(R.id.rcvAreaDetalle)
         rcvAreaDetalle.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        adapter = AreaPorcentajeAdapter(areaList){id, view ->
+        adapter = AreaPorcentajeAdapter(areaList){id, view, cantidad, reparados ->
             val area = areaList.find { it.id_area == id }
             if (area != null){
                 val bundle = Bundle()
                 bundle.putString("id_area", area.id_area)
                 bundle.putString("area_nombre", area.nombre)
+                bundle.putInt("cantidad", cantidad)
+                bundle.putInt("reparados", reparados)
                 val fragment = Area_trabajo()
                 fragment.arguments = bundle
                 val fragmentManager = requireActivity().supportFragmentManager
@@ -48,12 +55,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
         recyclerView.adapter = adapter
 
-        adapterAreaDetalle = AreaDetalleAdapter(areaList){id, view ->
+        adapterAreaDetalle = AreaDetalleAdapter(areaList){id, view, cantidad, reparados ->
             val area = areaList.find { it.id_area == id }
             if (area != null){
                 val bundle = Bundle()
                 bundle.putString("id_area", area.id_area)
                 bundle.putString("area_nombre", area.nombre)
+                bundle.putInt("cantidad", cantidad)
+                bundle.putInt("reparados", reparados)
                 val fragment = Area_trabajo()
                 fragment.arguments = bundle
                 val fragmentManager = requireActivity().supportFragmentManager
@@ -66,6 +75,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         rcvAreaDetalle.adapter = adapterAreaDetalle
 
         readArea()
+        totalArea(txtPorcentaje,pbPorcentaje)
     }
 
     fun readArea() {
@@ -90,5 +100,33 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
     }
+
+    fun totalArea(porcentaje : TextView, pbporcentaje : ProgressBar) {
+        val db = FirebaseFirestore.getInstance()
+        val collection = db?.collection("equipos")
+
+        collection?.get()
+            ?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    var cantidadEquipos = 0
+                    var equiposReparados = 0
+                    for (document in task.result) {
+                        val estado = document.getBoolean("estado") ?: false
+                        cantidadEquipos++
+                        Log.w("Datos: ", cantidadEquipos.toString())
+                        if (!estado) {
+                            equiposReparados++
+                        }
+                    }
+                    if (cantidadEquipos!= 0){
+                        porcentaje.text = ((equiposReparados.toFloat()/cantidadEquipos.toFloat())*100).toInt().toString() + "%"
+                        pbporcentaje.progress = ((equiposReparados.toFloat()/cantidadEquipos.toFloat())*100).toInt()
+                    }
+                } else {
+                    Log.w(TAG, "Error getting documents.", task.exception)
+                }
+            }
+    }
+
 
 }

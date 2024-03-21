@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,10 +33,18 @@ class Area_trabajo : Fragment(R.layout.fragment_area_trabajo) {
         val bundle = arguments
         val id_area = bundle?.getString("id_area") ?: ""
         val area_nombre = bundle?.getString("area_nombre") ?: ""
+        val cantidad = bundle?.getInt("cantidad") ?: 0
+        val reparados = bundle?.getInt("reparados") ?: 0
 
         val txtTitulo : TextView = view.findViewById(R.id.txtTitulo)
+        val txtPorcentaje : TextView = view.findViewById(R.id.txtPorcentaje)
+        val txtEquiposReparados : TextView = view.findViewById(R.id.txtEquiposReparados)
+        val pbPorcentaje : ProgressBar = view.findViewById(R.id.pbArea)
 
         txtTitulo.text = area_nombre
+        txtEquiposReparados.text = reparados.toString() + "/" + cantidad.toString() + " equipos reparados"
+        txtPorcentaje.text = ((reparados.toFloat()/cantidad.toFloat())*100).toInt().toString() + "%"
+        pbPorcentaje.progress = ((reparados.toFloat()/cantidad.toFloat())*100).toInt()
 
         rcvEquipos = view.findViewById(R.id.rcvEquipos)
         rcvEquipos.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)

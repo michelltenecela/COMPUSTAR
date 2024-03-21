@@ -19,7 +19,7 @@ import com.example.compustar.Modelo.Trabajador
 import com.example.compustar.R
 import com.google.firebase.firestore.FirebaseFirestore
 
-class AreaDetalleAdapter(private val area: List<Area>, private val onItemClick: (String, View) -> Unit) : RecyclerView.Adapter<AreaDetalleAdapter.AreaDetalleViewHolder>() {
+class AreaDetalleAdapter(private val area: List<Area>, private val onItemClick: (String, View, Int, Int) -> Unit) : RecyclerView.Adapter<AreaDetalleAdapter.AreaDetalleViewHolder>() {
 
 
     class AreaDetalleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -37,13 +37,15 @@ class AreaDetalleAdapter(private val area: List<Area>, private val onItemClick: 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: AreaDetalleViewHolder, position: Int) {
         val areaDato = area[position]
+        var cantidadEquipos = 0
+        var equiposReparados = 0
         holder.nombre.text = areaDato.nombre
         lateinit var adapter: TrabajadorHomeAdapter
         holder.rcvTrabajador.layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, false)
 
 
         holder.itemView.setOnClickListener {
-            onItemClick(areaDato.id_area,it)
+            onItemClick(areaDato.id_area,it, cantidadEquipos,equiposReparados)
         }
 
         val db = FirebaseFirestore.getInstance()
@@ -51,8 +53,7 @@ class AreaDetalleAdapter(private val area: List<Area>, private val onItemClick: 
         collection?.get()?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val trabajadorRead = mutableListOf<Trabajador>()
-                    var cantidadEquipos = 0
-                    var equiposReparados = 0
+
                     for (document in task.result) {
                         val nombre = document.getString("nombre") ?: ""
                         val cedula = document.getString("cedula") ?: ""

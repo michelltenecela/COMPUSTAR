@@ -17,6 +17,9 @@
         android:theme="@style/Theme.COMPUSTAR"
         tools:targetApi="31">
         <activity
+            android:name=".VistaTrabajador"
+            android:exported="false" />
+        <activity
             android:name=".Navegador"
             android:exported="false" />
         <activity
