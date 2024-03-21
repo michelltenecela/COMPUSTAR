@@ -14,7 +14,11 @@ class Tarea(
     private val TAG = "FirestoreManager"
     private var db: FirebaseFirestore? = null
 
-    fun addTarea() {
+    fun addTarea(idEquipo: String,
+                 falla: String,
+                 descripcion: String,
+                 fechaFinalizacion: String,
+                 estado: Boolean) {
         val db = FirebaseFirestore.getInstance()
         val tareaData = hashMapOf(
             "id_equipo" to idEquipo,

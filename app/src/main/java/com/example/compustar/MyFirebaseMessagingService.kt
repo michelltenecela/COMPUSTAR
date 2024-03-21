@@ -1,6 +1,4 @@
 package com.example.compustar
-
-import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -16,15 +14,11 @@ const val  CHANNEL_NAME = "com.example.fcmpushnotification"
 
 class MyFirebaseMessagingService :  FirebaseMessagingService()  {
 
-
-
-    //Generar notificacion
     private fun generateNotification(title: String, message: String){
         val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
         var pendingIntent : PendingIntent
-        //var pendingIntent =   PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             pendingIntent  = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_MUTABLE)
@@ -37,7 +31,6 @@ class MyFirebaseMessagingService :  FirebaseMessagingService()  {
             )
         }
 
-        //channel id, channel name
         var builder: NotificationCompat.Builder = NotificationCompat.Builder(applicationContext, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_background)
             .setAutoCancel(true)
@@ -45,10 +38,8 @@ class MyFirebaseMessagingService :  FirebaseMessagingService()  {
             .setOnlyAlertOnce(true)
             .setContentIntent(pendingIntent)
 
-        //Attach la notificacion creada a un layout custom
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        //verificar si android es mayor a android Oreo
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             val notificationChannel = NotificationChannel(CHANNEL_ID,
                 CHANNEL_NAME,
@@ -59,8 +50,6 @@ class MyFirebaseMessagingService :  FirebaseMessagingService()  {
         notificationManager.notify(0, builder.build())
     }
 
-
-    //mostrar la notificacion
     override fun onMessageReceived(message: RemoteMessage) {
         if(message.notification !=null){
             generateNotification(message.notification!!.title!!, message.notification!!.body!!)
