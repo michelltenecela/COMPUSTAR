@@ -7,7 +7,9 @@ class Cliente {
     private val TAG = "FirestoreManager"
     private var db: FirebaseFirestore? = null
 
-    fun addCliente(nombre: String, cedula: String, telefono: String) {
+    fun addCliente(nombre: String, cedula: String, telefono: String,
+                   onSuccess: (String) -> Unit, // Callback para manejar el éxito
+                   onFailure: (Exception) -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val cliente = hashMapOf(
             "nombre" to nombre,
@@ -15,12 +17,12 @@ class Cliente {
             "telefono" to telefono
         )
 
-        db?.collection("clientes")?.add(cliente)
-            ?.addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+        db.collection("clientes").add(cliente)
+            .addOnSuccessListener { documentReference ->
+                onSuccess(documentReference.id) // Llama al callback con el ID del documento
             }
-            ?.addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
+            .addOnFailureListener { e ->
+                onFailure(e) // Llama al callback de fallo con la excepción
             }
     }
 

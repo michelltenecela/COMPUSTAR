@@ -9,12 +9,9 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.compustar.Modelo.Area
-import com.example.compustar.Modelo.AreaDetalle
 import com.example.compustar.Modelo.Cliente
 import com.example.compustar.Modelo.Equipo
 import com.example.compustar.Modelo.Tarea
-import com.example.compustar.Modelo.Trabajador
 import com.tom_roush.pdfbox.android.PDFBoxResourceLoader
 import com.tom_roush.pdfbox.pdmodel.PDDocument
 import com.tom_roush.pdfbox.text.PDFTextStripper
@@ -69,22 +66,36 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
 
     private fun Enviar(){
         val cliente = Cliente()
-        val equipo = Equipo("AquiNoImportaElIDPorqueEstasAdd","hola","hola",
-            textViewIngreso.text.toString(),
-            textViewEquipo.text.toString(),
-            textViewSerie.text.toString(),
-            textViewMarca.text.toString(),
-            textViewModelo.text.toString(),
-            textViewFecha.text.toString(),textViewFecha.text.toString(),
-            textViewFalla.text.toString(),
-            textViewObservacion.text.toString(),estado = false)
+        val equipo = Equipo("","","",
+            "","","","","","","","","",false)
         val tarea = Tarea()
 
-        cliente.addCliente(textViewNombre.text.toString(),textViewCedula.text.toString(),textViewTelefono.text.toString())
-        equipo.addEquipo()
+        cliente.addCliente(textViewNombre.text.toString(),textViewCedula.text.toString(),
+            textViewTelefono.text.toString(),onSuccess = { clienteId ->
+                equipo.addEquipo(clienteId,"",
+                    textViewIngreso.text.toString(),
+                    textViewEquipo.text.toString(),
+                    textViewSerie.text.toString(),
+                    textViewMarca.text.toString(),
+                    textViewModelo.text.toString(),
+                    textViewFecha.text.toString(),textViewFecha.text.toString(),
+                    textViewFalla.text.toString(),
+                    textViewObservacion.text.toString(),estado = false,
+                    onSuccess = { equipoId ->
+                        tarea.addTarea(equipoId,"","","",false)
+                        limpiar()
+                    },
+                    onFailure = { exception ->
+                        println("Error agregando documento: ${exception.message}")
+                    }
+                )
+            },
+            onFailure = { exception ->
+                println("Error agregando documento: ${exception.message}")
+            })
+    }
 
-        tarea.addTarea("hola","hola","","",false)
-
+    private fun limpiar(){
         textViewIngreso.text = ""
         textViewNombre. text = ""
         textViewCedula.text = ""

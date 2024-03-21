@@ -22,7 +22,22 @@ class Equipo(
     private var db: FirebaseFirestore? = null
     var globalEquipoId: String? = null
 
-    fun addEquipo(){
+    fun addEquipo(
+        idCliente: String,
+        idTrabajador: String,
+        nIngreso: String,
+        equipo: String,
+        nSerie: String,
+        marca: String,
+        modelo: String,
+        fechaIngreso: String,
+        fechaFinalizacion: String,
+        falla: String,
+        observacion: String,
+        estado: Boolean,
+        onSuccess: (String) -> Unit, // Callback para manejar el éxito
+        onFailure: (Exception) -> Unit // Callback para manejar el fallo
+    ) {
         val db = FirebaseFirestore.getInstance()
         val equipoData = hashMapOf(
             "id_cliente" to idCliente,
@@ -41,11 +56,10 @@ class Equipo(
 
         db.collection("equipos").add(equipoData)
             .addOnSuccessListener { documentReference ->
-                globalEquipoId = documentReference.id
-                // Ahora puedes usar globalEquipoId en otra parte de tu código.
+                onSuccess(documentReference.id) // Llama al callback con el ID del documento
             }
             .addOnFailureListener { e ->
-                // Manejo de errores
+                onFailure(e) // Llama al callback de fallo con la excepción
             }
     }
 
