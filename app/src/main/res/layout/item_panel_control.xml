@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="200dp"
     android:layout_margin="10dp"
     app:cardBackgroundColor="#FFFFFF"
     app:cardCornerRadius="20dp"
@@ -11,20 +11,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center_horizontal|center_vertical"
         android:gravity="center_horizontal"
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/txtNombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Edwin Rey"
-            android:textColor="#000000"
-            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/imgFoto"
@@ -33,39 +22,18 @@
             android:src="@drawable/luffy" />
 
         <TextView
-            android:id="@+id/txtEquiposReparados"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Equipos reparados  2/3"
-            android:textColor="#000000" />
-
-        <FrameLayout
-            android:id="@+id/flprogreso"
+            android:id="@+id/txtNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center_horizontal">
-
-            <ProgressBar
-                android:id="@+id/pbPorcentaje"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:indeterminateOnly="false"
-                android:progress="20"
-                android:progressDrawable="@drawable/progreso_horizontal" />
-
-            <TextView
-                android:id="@+id/txtPorcentaje"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:text="60%"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-        </FrameLayout>
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="Edwin Rey"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

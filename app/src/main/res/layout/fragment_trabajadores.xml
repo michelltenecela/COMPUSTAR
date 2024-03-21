@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".EquiposFragment">
+    android:backgroundTint="#FFFFFF"
+    tools:context=".trabajadoresFragment">
 
     <LinearLayout
         android:id="@+id/llHome"
@@ -32,24 +33,29 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:layout_weight="1"
-                android:text="Panel de control"
+                android:text="Trabajadores"
                 android:textAlignment="textStart"
                 android:textColor="#CB2027"
                 android:textSize="34sp"
                 android:textStyle="bold" />
 
+            <ImageView
+                android:id="@+id/btnAgregar"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/panel_agrega" />
 
 
         </LinearLayout>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcvPanel"
+        android:id="@+id/rcvTrabajadores"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="10dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/llHome" />

@@ -30,7 +30,7 @@
             android:id="@+id/imgFoto"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/luffy" />
+            android:src="@drawable/logo_trabajadores" />
 
         <TextView
             android:id="@+id/txtEquiposReparados"

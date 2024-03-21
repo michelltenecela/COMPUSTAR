@@ -12,26 +12,29 @@ class Area(
     private var db: FirebaseFirestore? = null
 
 
-    fun readArea() {
+    fun readArea(
+        onSuccess: (List<Area>) -> Unit, // Callback para manejar el éxito
+        onFailure: (Exception) -> Unit // Callback para manejar el fallo
+    ) {
         val db = FirebaseFirestore.getInstance()
-        val collection = db?.collection("areas")
+        val collection = db.collection("areas")
 
-        collection?.get()
-            ?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    for (document in task.result) {
-                        //Log.d(TAG, "${document.id} => ${document.data}")
-                        val nombre = document.getString("nombre") ?: ""
-                        val estado = document.getBoolean("estado") ?: false
-                        val id = document.id
-                        val area = Area(id,nombre, estado)
-                        //areaList.add(area)
-                    }
-                } else {
-                    Log.w(TAG, "Error getting documents.", task.exception)
+        collection.get()
+            .addOnSuccessListener { result ->
+                val areaList = mutableListOf<Area>()
+                for (document in result) {
+                    val nombre = document.getString("nombre") ?: ""
+                    val estado = document.getBoolean("estado") ?: false
+                    val id = document.id
+                    val area = Area(id, nombre, estado)
+                    areaList.add(area)
                 }
+                onSuccess(areaList) // Llama al callback con la lista de áreas
             }
-    }
+            .addOnFailureListener { exception ->
+                onFailure(exception) // Llama al callback de fallo con la excepción
+                }
+        }
 
     fun addArea(nombre: String, estado: Boolean) {
         val db = FirebaseFirestore.getInstance()

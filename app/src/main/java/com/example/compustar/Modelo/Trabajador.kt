@@ -7,7 +7,7 @@ class Trabajador( val id_trabajador: String,
                   val email: String,
                   val nombre: String,
                   val cedula: String,
-                  val contraseña: String,
+                  val tipo: String,
                   val id_area: String) {
     private val TAG = "FirestoreManager"
     private var db: FirebaseFirestore? = null
@@ -16,22 +16,26 @@ class Trabajador( val id_trabajador: String,
         db = FirebaseFirestore.getInstance()
     }
 
-    fun addTrabajador(email: String, nombre: String, cedula: String, contraseña: String, id_area: String) {
+    fun addTrabajador(){
+
         val db = FirebaseFirestore.getInstance()
         val trabajador = hashMapOf(
             "email" to email,
             "nombre" to nombre,
             "cedula" to cedula,
-            "contraseña" to contraseña,
+            "tipo" to tipo,
             "id_area" to id_area
         )
 
-        db?.collection("trabajadores")?.add(trabajador)
-            ?.addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+        // Usa el método document con el ID que deseas para obtener un DocumentReference
+        val documentReference = db.collection("trabajadores").document(id_trabajador)
+
+        // Luego establece los datos en ese DocumentReference
+        documentReference.set(trabajador)
+            .addOnSuccessListener {
             }
-            ?.addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error al añadir documento", e)
             }
     }
 
