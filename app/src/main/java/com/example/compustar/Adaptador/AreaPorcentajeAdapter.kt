@@ -65,7 +65,7 @@ class AreaPorcentajeAdapter(private val area: List<Area>, private val onItemClic
                             val estado = equipoDocument.getBoolean("estado") ?: false
                             cantidadEquipos++
                             Log.w("Datos: ", cantidadEquipos.toString())
-                            if (!estado) {
+                            if (estado) {
                                 equiposReparados++
                             }
                         }

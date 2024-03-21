@@ -48,7 +48,7 @@ class TrabajadorHomeAdapter(private val trabajador: List<Trabajador>, private va
             for (equipoDocument in result) {
                 val estado = equipoDocument.getBoolean("estado") ?: false
                 cantidadEquipos++
-                if (!estado) {
+                if (estado) {
                     equiposReparados++
                 }
             }

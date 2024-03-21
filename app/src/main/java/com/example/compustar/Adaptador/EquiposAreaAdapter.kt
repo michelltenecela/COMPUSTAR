@@ -59,7 +59,7 @@ class EquiposAreaAdapter(private val equipo: List<Equipo>, private val onItemCli
             for (tareaDocument in result) {
                 val estado = tareaDocument.getBoolean("estado") ?: false
                 cantidadTareas++
-                if (!estado) {
+                if (estado) {
                     tareasCompletadas++
                 }
             }

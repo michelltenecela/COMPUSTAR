@@ -113,8 +113,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     for (document in task.result) {
                         val estado = document.getBoolean("estado") ?: false
                         cantidadEquipos++
-                        Log.w("Datos: ", cantidadEquipos.toString())
-                        if (!estado) {
+                        Log.w("Datos: ", estado.toString())
+                        if (estado) {
                             equiposReparados++
                         }
                     }

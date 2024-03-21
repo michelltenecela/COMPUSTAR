@@ -73,7 +73,7 @@ class AreaDetalleAdapter(private val area: List<Area>, private val onItemClick: 
                                 val estado = equipoDocument.getBoolean("estado") ?: false
                                 cantidadEquipos++
                                 Log.w("Datos: ", cantidadEquipos.toString())
-                                if (!estado) {
+                                if (estado) {
                                     equiposReparados++
                                 }
                             }
