@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //probando
+        //probando 2
 
         val btnEntrar: Button = findViewById(R.id.btnIniciarSesion)
         val txtemail : TextView = findViewById(R.id.txtUsuario)
