@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.compustar.Modelo.Area
 import com.example.compustar.Modelo.Trabajador
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -59,8 +60,8 @@ class trabajadorAgregarFragmento : Fragment(R.layout.fragment_trabajador_agregar
             val email: TextView = view.findViewById(R.id.tvEmail)
             val password: TextView = view.findViewById(R.id.tvpass)
             val nombre: TextView = view.findViewById(R.id.tvNombre)
-            val area: TextView = view.findViewById(R.id.tvarea)
             val cedula: TextView = view.findViewById(R.id.tvCedula)
+            val adminSwitch: SwitchMaterial = view.findViewById(R.id.smAdmin)
 
             auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
                 .addOnCompleteListener { task ->
@@ -74,7 +75,7 @@ class trabajadorAgregarFragmento : Fragment(R.layout.fragment_trabajador_agregar
                             email.text.toString(),
                             nombre.text.toString(),
                             cedula.text.toString(),
-                            "",
+                            adminSwitch.isChecked,
                             seleccion
                         )
 

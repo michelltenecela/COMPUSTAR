@@ -58,7 +58,7 @@ class AreaDetalleAdapter(private val area: List<Area>, private val onItemClick: 
                         val nombre = document.getString("nombre") ?: ""
                         val cedula = document.getString("cedula") ?: ""
                         val email = document.getString("email") ?: ""
-                        val contraseña = document.getString("contraseña") ?: ""
+                        val contraseña = document.getBoolean("contraseña") ?: false
                         val id_area = document.getString("id_area") ?: ""
                         val id = document.id
                         val trabajador = Trabajador(id,email,nombre,cedula,contraseña,id_area)

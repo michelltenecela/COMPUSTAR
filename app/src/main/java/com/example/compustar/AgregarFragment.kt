@@ -76,7 +76,7 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
 
         btnAgregarBD.setOnClickListener {
 
-            val trabajador = Trabajador("","","","","","")
+            val trabajador = Trabajador("","","","",false,"")
             trabajador.readUsers(
                 onSuccess = { users ->
                     // Extrayendo nombres de usuario para mostrar en el diálogo

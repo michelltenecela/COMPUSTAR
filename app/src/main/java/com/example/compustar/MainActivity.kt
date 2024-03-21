@@ -40,11 +40,8 @@ class MainActivity : AppCompatActivity() {
 
                     val token = task.result
                     Token(token)
+                    verificarTipoUsuario()
                 })
-
-                val intent = Intent(applicationContext,Navegador::class.java)
-                startActivity(intent)
-                finish()
             }
         }
 
@@ -66,14 +63,10 @@ class MainActivity : AppCompatActivity() {
                             Log.w(TAG, "Fetching FCM registration token failed", task.exception)
                             return@OnCompleteListener
                         }
-
                         val token = task.result
                         Token(token)
+                        verificarTipoUsuario()
                     })
-
-                    val intent = Intent(applicationContext,Navegador::class.java)
-                    startActivity(intent)
-                    finish()
                 }
             }
     }
@@ -91,5 +84,32 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
+    private fun verificarTipoUsuario() {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        val userDocRef = FirebaseFirestore.getInstance().collection("trabajadores").document(userId)
+
+        userDocRef.get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    // Comprobando si el campo "tipo" es true
+                    val esTipoEspecifico = documentSnapshot.getBoolean("tipo") ?: false
+                    if (esTipoEspecifico) {
+                        val intent = Intent(applicationContext,Navegador::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        val intent = Intent(applicationContext,VistaTrabajador::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                } else {
+                    Log.d(TAG, "No se encontró el documento del trabajador.")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error al acceder al documento del trabajador", exception)
+            }
+    }
 
 }

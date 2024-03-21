@@ -8,7 +8,7 @@ class Trabajador( val id_trabajador: String,
                   val email: String,
                   val nombre: String,
                   val cedula: String,
-                  val tipo: String,
+                  val tipo: Boolean,
                   val id_area: String) {
     private val TAG = "FirestoreManager"
     private var db: FirebaseFirestore? = null
@@ -27,7 +27,7 @@ class Trabajador( val id_trabajador: String,
                         email = document.getString("email") ?: "",
                         nombre = document.getString("nombre") ?: "",
                         cedula = document.getString("cedula") ?: "",
-                        tipo = document.getString("tipo") ?: "",
+                        tipo = document.getBoolean("tipo") ?: false,
                         id_area = document.getString("id_area") ?: ""
                     )
                     users.add(user)

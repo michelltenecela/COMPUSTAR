@@ -105,6 +105,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/smAdmin"
             android:layout_width="350dp"
             android:layout_height="match_parent"
             android:checked="false"

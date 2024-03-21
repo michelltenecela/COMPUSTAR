@@ -82,7 +82,7 @@ class trabajadoresFragment : Fragment(R.layout.fragment_trabajadores) {
                     //val contraseña = document.getString("tipo") ?: ""
                     val id_area = document.getString("id_area") ?: ""
                     val id = document.id
-                    val trabajador = Trabajador(id,email,nombre,cedula,"contraseña",id_area)
+                    val trabajador = Trabajador(id,email,nombre,cedula,false,id_area)
                     trabajadorList.add(trabajador)
                 }
                 adapter.notifyDataSetChanged()
