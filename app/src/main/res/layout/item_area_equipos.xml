@@ -10,12 +10,14 @@
     app:cardBackgroundColor="#FFFFFF">
 
     <LinearLayout
+        android:id="@+id/llTodo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/linear_layout_border"
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/llFoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/linear_layout_border"
@@ -62,8 +64,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:progress="20"
-                android:progressTint="#CB2027"
-                android:progressBackgroundTint="#FFF1EE"/>
+                android:progressBackgroundTint="#FFF1EE"
+                android:progressTint="#27D1B3" />
         </LinearLayout>
 
     </LinearLayout>

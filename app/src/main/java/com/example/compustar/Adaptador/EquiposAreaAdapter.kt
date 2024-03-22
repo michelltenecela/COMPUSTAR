@@ -6,15 +6,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.compustar.Modelo.Area
 import com.example.compustar.Modelo.Equipo
 import com.example.compustar.Modelo.Trabajador
 import com.example.compustar.R
 import com.google.firebase.firestore.FirebaseFirestore
+import io.grpc.internal.SharedResourceHolder.Resource
 
 class EquiposAreaAdapter(private val equipo: List<Equipo>, private val onItemClick: (String, View, String, String) -> Unit) : RecyclerView.Adapter<EquiposAreaAdapter.EquiposAreaViewHolder>() {
 
@@ -23,7 +27,9 @@ class EquiposAreaAdapter(private val equipo: List<Equipo>, private val onItemCli
         val tareas: TextView = itemView.findViewById(R.id.txtTareas)
         val nombre: TextView = itemView.findViewById(R.id.txtNombre)
         val pbtareas: ProgressBar = itemView.findViewById(R.id.pbTareas)
-
+        val llTodo: LinearLayout = itemView.findViewById(R.id.llTodo)
+        val llFoto: LinearLayout = itemView.findViewById(R.id.llFoto)
+        val imgFoto : ImageView = itemView.findViewById(R.id.imgFoto)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EquiposAreaViewHolder {
@@ -35,6 +41,16 @@ class EquiposAreaAdapter(private val equipo: List<Equipo>, private val onItemCli
     override fun onBindViewHolder(holder: EquiposAreaViewHolder, position: Int) {
         val equipoDato = equipo[position]
         var trabajador = ""
+
+        if (equipoDato.estado){
+            holder.imgFoto.setImageResource(R.drawable.equipo_completado)
+            holder.llTodo.background = ContextCompat.getDrawable(holder.itemView.context,R.drawable.linear_layout_border_completado)
+            holder.llFoto.background = ContextCompat.getDrawable(holder.itemView.context,R.drawable.linear_layout_border_completado)
+        }else{
+            holder.imgFoto.setImageResource(R.drawable.ref_laptop)
+            holder.llTodo.background = ContextCompat.getDrawable(holder.itemView.context,R.drawable.linear_layout_border)
+            holder.llFoto.background = ContextCompat.getDrawable(holder.itemView.context,R.drawable.linear_layout_border)
+        }
 
         holder.itemView.setOnClickListener {
             onItemClick(equipoDato.idEquipo,it,holder.nombre.text.toString(),trabajador)
