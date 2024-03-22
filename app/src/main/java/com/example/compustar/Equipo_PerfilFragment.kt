@@ -54,7 +54,9 @@ class Equipo_PerfilFragment : Fragment(R.layout.fragment_equipo_perfil) {
         rcvTareas = view.findViewById(R.id.rcvTareas)
         rcvTareas.layoutManager = FlexboxLayoutManager(requireContext(), FlexDirection.ROW, FlexWrap.WRAP)
 
-        adapter = TareaAdapter(tareaList)
+        adapter = TareaAdapter(tareaList){id, view ->
+
+        }
         rcvTareas.adapter = adapter
 
         readTarea(id_equipo)

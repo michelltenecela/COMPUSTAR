@@ -9,7 +9,7 @@ class Tarea(
     val falla: String,
     val descripcion: String,
     val fechaFinalizacion: String,
-    val estado: Boolean) {
+    var estado: Boolean) {
 
     private val TAG = "FirestoreManager"
     private var db: FirebaseFirestore? = null

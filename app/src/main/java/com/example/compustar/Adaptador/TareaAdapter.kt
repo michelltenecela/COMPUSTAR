@@ -11,8 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.compustar.Modelo.Tarea
 import com.example.compustar.R
 
-class TareaAdapter(private val tarea: List<Tarea>) : RecyclerView.Adapter<TareaAdapter.TareaViewHolder>() {
+class TareaAdapter(private val tarea: List<Tarea>, private val onItemClick: (String, View) -> Unit) : RecyclerView.Adapter<TareaAdapter.TareaViewHolder>() {
 
+    fun updateTarea(idTarea: String, nuevoEstado: Boolean) {
+        val tareas = tarea.find { it.idTarea == idTarea }
+        tareas?.estado = nuevoEstado
+        notifyDataSetChanged()
+    }
 
     class TareaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tarea: TextView = itemView.findViewById(R.id.txtTarea)
@@ -32,6 +37,10 @@ class TareaAdapter(private val tarea: List<Tarea>) : RecyclerView.Adapter<TareaA
             holder.estado.setImageResource(R.drawable.tarea_terminada)
         }else{
             holder.estado.setImageResource(R.drawable.tarea_faltante)
+        }
+
+        holder.itemView.setOnClickListener {
+            onItemClick(data.idTarea,it)
         }
     }
 

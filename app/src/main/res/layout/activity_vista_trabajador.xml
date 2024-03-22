@@ -32,7 +32,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:layout_weight="1"
-                android:text="Area de trabajo 1"
+                android:text="Area de trabajo"
                 android:textAlignment="textStart"
                 android:textColor="#CB2027"
                 android:textSize="34sp"
@@ -50,17 +50,7 @@
                 android:src="@drawable/busqueda"
                 android:tint="#CB2027" />
 
-            <ImageButton
-                android:id="@+id/ibtnFiltrar"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp"
-                android:backgroundTint="@android:color/transparent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/filtrar"
-                android:tint="#CB2027" />
+
 
         </LinearLayout>
     </LinearLayout>
@@ -78,117 +68,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:orientation="vertical">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/crdFiltro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:visibility="gone"
-                app:cardBackgroundColor="#FFFFFF"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="4dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView31"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="8dp"
-                        android:text="Filtrar"
-                        android:textColor="#000000"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="16dp"
-                        android:orientation="horizontal">
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_marginStart="16dp"
-                            app:cardBackgroundColor="#FFFFFF"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="4dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/textView71"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="8dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:text="Edwin Rey"
-                                    android:textColor="#000000"
-                                    android:textStyle="bold" />
-
-                                <ImageView
-                                    android:id="@+id/imageView61"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"
-                                    android:src="@drawable/luffy" />
-                            </LinearLayout>
-
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_marginStart="16dp"
-                            app:cardBackgroundColor="#FFFFFF"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="4dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/textView72"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="8dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:text="Angelica"
-                                    android:textColor="#000000"
-                                    android:textStyle="bold" />
-
-                                <ImageView
-                                    android:id="@+id/imageView6"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"
-                                    android:src="@drawable/luffy" />
-                            </LinearLayout>
-
-                        </androidx.cardview.widget.CardView>
-
-                    </LinearLayout>
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/crdArea"
@@ -214,7 +93,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Descripcion de la area de trabajo 1"
+                        android:text="Registro de equipos en mantenimiento"
                         android:textColor="#000000"
                         android:textSize="16sp"
                         android:textStyle="bold" />

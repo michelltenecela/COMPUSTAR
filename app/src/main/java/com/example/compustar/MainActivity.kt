@@ -100,6 +100,7 @@ class MainActivity : AppCompatActivity() {
                         finish()
                     } else {
                         val intent = Intent(applicationContext,VistaTrabajador::class.java)
+                        intent.putExtra("id_trabajador", documentSnapshot.id)
                         startActivity(intent)
                         finish()
                     }
