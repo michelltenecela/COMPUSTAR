@@ -130,6 +130,7 @@ class Area_trabajo : Fragment(R.layout.fragment_area_trabajo) {
                                 equipoList.add(equipos)
                             }
                         }
+                        equipoList.sortBy { it.estado }
                         adapter.notifyDataSetChanged()
                     } else {
                         Log.w(ContentValues.TAG, "Error getting documents.", task.exception)

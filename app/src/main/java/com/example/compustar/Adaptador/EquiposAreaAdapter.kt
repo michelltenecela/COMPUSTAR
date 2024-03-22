@@ -20,8 +20,7 @@ import com.example.compustar.R
 import com.google.firebase.firestore.FirebaseFirestore
 import io.grpc.internal.SharedResourceHolder.Resource
 
-class EquiposAreaAdapter(private val equipo: List<Equipo>, private val onItemClick: (String, View, String, String) -> Unit) : RecyclerView.Adapter<EquiposAreaAdapter.EquiposAreaViewHolder>() {
-
+class EquiposAreaAdapter(private var equipo: List<Equipo>, private val onItemClick: (String, View, String, String) -> Unit) : RecyclerView.Adapter<EquiposAreaAdapter.EquiposAreaViewHolder>() {
 
     class EquiposAreaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tareas: TextView = itemView.findViewById(R.id.txtTareas)

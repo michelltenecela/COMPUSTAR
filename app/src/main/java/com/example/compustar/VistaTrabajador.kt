@@ -110,6 +110,7 @@ class VistaTrabajador : AppCompatActivity() {
                     reparados++
                 }
             }
+            equipoList.sortBy { it.estado }
             txtEquiposReparados.text = reparados.toString() + "/" + cantidad.toString() + " equipos reparados"
             txtPorcentaje.text = ((reparados.toFloat()/cantidad.toFloat())*100).toInt().toString() + "%"
             pbPorcentaje.progress = ((reparados.toFloat()/cantidad.toFloat())*100).toInt()
