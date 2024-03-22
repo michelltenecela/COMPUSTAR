@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.compustar.Adaptador.EquiposAreaAdapter
 import com.example.compustar.Modelo.Equipo
 import com.example.compustar.Modelo.Trabajador
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class VistaTrabajador : AppCompatActivity() {
@@ -34,7 +35,11 @@ class VistaTrabajador : AppCompatActivity() {
             popupMenu.setOnMenuItemClickListener { menuItem: MenuItem ->
                 when (menuItem.itemId) {
                     R.id.op_salir -> {
-                        //Aqui podra salir de la sesion
+                        val mAuth = FirebaseAuth.getInstance()
+                        mAuth.signOut()
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        this.finish()
                         true
                     }
                     else -> false

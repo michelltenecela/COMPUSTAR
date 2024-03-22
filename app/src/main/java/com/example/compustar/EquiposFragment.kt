@@ -1,5 +1,6 @@
 package com.example.compustar
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.example.compustar.Adaptador.EquiposAreaAdapter
 import com.example.compustar.Adaptador.PanelControlAdapter
 import com.example.compustar.Modelo.Equipo
 import com.example.compustar.Modelo.PanelControl
+import com.google.firebase.auth.FirebaseAuth
 
 
 class EquiposFragment : Fragment(R.layout.fragment_equipos) {
@@ -35,7 +37,11 @@ class EquiposFragment : Fragment(R.layout.fragment_equipos) {
             popupMenu.setOnMenuItemClickListener { menuItem: MenuItem ->
                 when (menuItem.itemId) {
                     R.id.op_salir -> {
-                        //Aqui podra salir de la sesion
+                        val mAuth = FirebaseAuth.getInstance()
+                        mAuth.signOut()
+                        val intent = Intent(requireContext(), MainActivity::class.java)
+                        startActivity(intent)
+                        requireActivity().finish()
                         true
                     }
                     else -> false
