@@ -3,8 +3,11 @@ package com.example.compustar
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +26,23 @@ class EquiposFragment : Fragment(R.layout.fragment_equipos) {
         val panelList = mutableListOf<PanelControl>()
         lateinit var rcvPanel: RecyclerView
         lateinit var adapter: PanelControlAdapter
+
+        val imgMenu : ImageView = view.findViewById(R.id.imgMenu)
+
+        imgMenu.setOnClickListener {
+            val popupMenu = PopupMenu(requireContext(), it)
+            popupMenu.inflate(R.menu.menu_salir)
+            popupMenu.setOnMenuItemClickListener { menuItem: MenuItem ->
+                when (menuItem.itemId) {
+                    R.id.op_salir -> {
+                        //Aqui podra salir de la sesion
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popupMenu.show()
+        }
 
         panelList.add(PanelControl(1,"Trabajadores","trabajador"))
         panelList.add(PanelControl(2,"Areas de trabajo","area"))

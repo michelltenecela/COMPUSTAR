@@ -5,6 +5,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +26,23 @@ class VistaTrabajador : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vista_trabajador)
 
+        val imgMenu : ImageView = findViewById(R.id.imgMenu)
+
+        imgMenu.setOnClickListener {
+            val popupMenu = PopupMenu(this, it)
+            popupMenu.inflate(R.menu.menu_salir)
+            popupMenu.setOnMenuItemClickListener { menuItem: MenuItem ->
+                when (menuItem.itemId) {
+                    R.id.op_salir -> {
+                        //Aqui podra salir de la sesion
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popupMenu.show()
+        }
+
         rcvEquipos = findViewById(R.id.rcvEquipos)
         rcvEquipos.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         adapter = EquiposAreaAdapter(equipoList){id, view, cliente, trabajador ->
@@ -36,6 +56,7 @@ class VistaTrabajador : AppCompatActivity() {
                 bundle.putExtra("falla", data.falla)
                 bundle.putExtra("fecha", data.fechaIngreso)
                 bundle.putExtra("observacion", data.observacion)
+                bundle.putExtra("estado", data.estado)
                 startActivity(bundle)
             }
         }

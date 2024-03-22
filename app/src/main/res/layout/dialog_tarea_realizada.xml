@@ -19,11 +19,11 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imgFotoTitulo"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
-            app:srcCompat="@drawable/advertencia_eliminar" />
+            app:srcCompat="@drawable/advertencia" />
 
         <TextView
             android:id="@+id/txtvEncabezado"
@@ -35,7 +35,7 @@
             android:layout_weight="1"
             android:text="¿Has completado la tarea?"
             android:textAlignment="center"
-            android:textColor="#DD636E"
+            android:textColor="#27D1B3"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -100,11 +100,11 @@
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:text="Cancelar"
-                android:textColor="#DD636E"
+                android:textColor="#27D1B3"
                 android:visibility="visible"
                 app:cornerRadius="10dp"
                 app:iconGravity="textStart"
-                app:strokeColor="#DD636E"
+                app:strokeColor="#27D1B3"
                 app:strokeWidth="1dp" />
 
             <Button
@@ -114,7 +114,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
-                android:backgroundTint="#DD636E"
+                android:backgroundTint="#27D1B3"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:text="Aceptar"

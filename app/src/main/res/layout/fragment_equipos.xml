@@ -38,6 +38,14 @@
                 android:textSize="34sp"
                 android:textStyle="bold" />
 
+            <ImageView
+                android:id="@+id/imgMenu"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/menu"
+                app:tint="#CB2027" />
 
 
         </LinearLayout>
