@@ -54,6 +54,11 @@ class Equipo(
             "estado" to estado
         )
 
+        //prioridad-string
+        //obervacionTecnico-string
+        //estado-string
+        //id_area-String
+
         db.collection("equipos").add(equipoData)
             .addOnSuccessListener { documentReference ->
                 onSuccess(documentReference.id) // Llama al callback con el ID del documento

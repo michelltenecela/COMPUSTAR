@@ -127,7 +127,7 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
             "","","","","","","","","",false)
         val tarea = Tarea("","","","","",false)
         Lista = emptyList()
-        Lista = listOf("Revisado","Pendiente por confirmar", "No desea reparar", "Reparado")
+        Lista = listOf("Revisado","Reparado", "No desea reparar", "Pendiente por confirmar")
         cliente.addCliente(textViewNombre.text.toString(),textViewCedula.text.toString(),
             textViewTelefono.text.toString(),onSuccess = { clienteId ->
                 equipo.addEquipo(clienteId,trabajador,
