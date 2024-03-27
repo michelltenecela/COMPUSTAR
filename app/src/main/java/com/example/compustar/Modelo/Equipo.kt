@@ -25,6 +25,7 @@ class Equipo(
     fun addEquipo(
         idCliente: String,
         idTrabajador: String,
+        idArea: String,
         nIngreso: String,
         equipo: String,
         nSerie: String,
@@ -42,6 +43,7 @@ class Equipo(
         val equipoData = hashMapOf(
             "id_cliente" to idCliente,
             "id_trabajador" to idTrabajador,
+            "id_area" to idArea,
             "n_ingreso" to nIngreso,
             "equipo" to equipo,
             "n_serie" to nSerie,

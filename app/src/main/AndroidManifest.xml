@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -21,9 +22,6 @@
             android:exported="false" />
         <activity
             android:name=".VistaTrabajador"
-            android:exported="false" />
-        <activity
-            android:name=".AgregarUsuario"
             android:exported="false" />
         <activity
             android:name=".Navegador"

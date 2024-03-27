@@ -15,6 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.compustar.Modelo.Area
 import com.example.compustar.Modelo.Cliente
 import com.example.compustar.Modelo.Equipo
 import com.example.compustar.Modelo.Tarea
@@ -52,7 +53,8 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btnAgregarBD:Button = view.findViewById(R.id.btnAgregarBD)
+        val btnAgregarBD:Button = view.findViewById(R.id.btnTrabajador)
+        val btnAgregar2:Button = view.findViewById(R.id.btnArea)
         val btnAgregar: ImageButton = view.findViewById(R.id.ibtnPDF)
         textViewIngreso = view.findViewById(R.id.tvIngreso)
         textViewNombre = view.findViewById(R.id.tvNombre)
@@ -65,8 +67,6 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
         textViewModelo = view.findViewById(R.id.tvModelo)
         textViewFalla = view.findViewById(R.id.tvFalla)
         textViewObservacion = view.findViewById(R.id.tvObservacion)
-
-        chipGroup= view.findViewById(R.id.chip_group)
 
         PDFBoxResourceLoader.init(requireActivity().applicationContext)
 
@@ -86,7 +86,28 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
                         .setTitle("Selecciona un usuario")
                         .setItems(userNames) { dialog, which ->
                             val selectedUserId = users[which].id_trabajador
-                            Enviar(selectedUserId)
+                            Enviar(selectedUserId,"")
+                        }
+                        .show()
+                },
+                onFailure = { exception ->
+                    Toast.makeText(requireContext(), "Error al obtener usuarios", Toast.LENGTH_SHORT).show()
+                }
+            )
+        }
+
+        btnAgregar2.setOnClickListener {
+            val trabajador = Area("","",false)
+            trabajador.readArea(
+                onSuccess = { users ->
+                    // Extrayendo nombres de usuario para mostrar en el diálogo
+                    val userNames = users.map { it.nombre }.toTypedArray()
+
+                    MaterialAlertDialogBuilder(requireContext())
+                        .setTitle("Selecciona una Area")
+                        .setItems(userNames) { dialog, which ->
+                            val selectedUserId = users[which].id_area
+                            Enviar("",selectedUserId)
                         }
                         .show()
                 },
@@ -121,7 +142,7 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
         return chipTexts
     }
 
-    private fun Enviar(trabajador: String){
+    private fun Enviar(trabajador: String,Area: String){
         val cliente = Cliente()
         val equipo = Equipo("","","",
             "","","","","","","","","",false)
@@ -131,6 +152,7 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
         cliente.addCliente(textViewNombre.text.toString(),textViewCedula.text.toString(),
             textViewTelefono.text.toString(),onSuccess = { clienteId ->
                 equipo.addEquipo(clienteId,trabajador,
+                    Area,
                     textViewIngreso.text.toString(),
                     textViewEquipo.text.toString(),
                     textViewSerie.text.toString(),
@@ -167,7 +189,6 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
         textViewModelo.text = ""
         textViewFalla. text = ""
         textViewObservacion.text = ""
-        chipGroup.removeAllViews()
     }
 
     private fun mostrar(textoPdf: String) {
@@ -182,7 +203,6 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
         textViewMarca.text = extraerTextoEntre(textoUnaLinea, "Marca", "Fecha")
         textViewFecha.text = extraerTextoEntre(textoUnaLinea, "Ingreso", "Modelo")
         textViewModelo.text = extraerTextoEntre(textoUnaLinea, "Modelo", "X")
-        Lista = LlenarChips(extraerTextoEntre(textoUnaLinea, "X", "Falla"))
         textViewFalla.text = extraerTextoEntre(textoUnaLinea, "Falla", "Observación")
         textViewObservacion.text = extraerTextoEntre(textoUnaLinea, "Observación", "Total")
     }

@@ -47,10 +47,10 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/llHome"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -74,8 +74,7 @@
                     android:layout_height="100dp"
                     android:backgroundTint="@android:color/transparent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/archivo_pdf"
-                    />
+                    android:src="@drawable/archivo_pdf" />
 
                 <TextView
                     android:id="@+id/textView9"
@@ -272,44 +271,32 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="102dp"
                     android:orientation="horizontal"
                     android:padding="16dp">
 
-                    <com.google.android.material.chip.ChipGroup
-                        android:id="@+id/chip_group"
-                        android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/btnArea"
+                        android:layout_width="175dp"
                         android:layout_height="wrap_content"
-                        app:singleSelection="true"
-                        android:layout_gravity="center_vertical">
+                        android:layout_weight="1"
+                        android:text="Area"
+                        app:icon="@drawable/agregarb"
+                        app:iconPadding="12dp" />
 
-                    </com.google.android.material.chip.ChipGroup>
+                    <Button
+                        android:id="@+id/btnTrabajador"
+                        android:layout_width="175dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Trabajador"
+                        app:icon="@drawable/agregarb" />
                 </LinearLayout>
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnAgregarBD"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="#CB2027"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:text="Agregar"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                app:cornerRadius="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/llDatos" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
