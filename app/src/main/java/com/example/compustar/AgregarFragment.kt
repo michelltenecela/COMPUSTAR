@@ -8,6 +8,8 @@ import android.text.Spanned
 import android.text.style.ImageSpan
 import android.util.Log
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -49,6 +51,9 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
     private lateinit var textViewObservacion: TextView
     private lateinit var chipGroup: ChipGroup
     private lateinit var Lista: List<String>
+    private lateinit var selectedItem: String
+    private lateinit var autoCompleteTextView: AutoCompleteTextView
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -56,6 +61,15 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
         val btnAgregarBD:Button = view.findViewById(R.id.btnTrabajador)
         val btnAgregar2:Button = view.findViewById(R.id.btnArea)
         val btnAgregar: ImageButton = view.findViewById(R.id.ibtnPDF)
+
+        autoCompleteTextView = view.findViewById<AutoCompleteTextView>(R.id.tvprioridad)
+
+        val sugerencias = arrayOf("Alta", "Media", "Baja")
+
+        // Crea un adaptador ArrayAdapter y configúralo en el AutoCompleteTextView
+        val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_dropdown_item_1line, sugerencias)
+        autoCompleteTextView.setAdapter(adapter)
+
         textViewIngreso = view.findViewById(R.id.tvIngreso)
         textViewNombre = view.findViewById(R.id.tvNombre)
         textViewCedula = view.findViewById(R.id.tvCedula)
@@ -69,6 +83,10 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
         textViewObservacion = view.findViewById(R.id.tvObservacion)
 
         PDFBoxResourceLoader.init(requireActivity().applicationContext)
+
+        autoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
+            selectedItem = parent.getItemAtPosition(position).toString()
+        }
 
         btnAgregar.setOnClickListener {
             selectPdfFile()
@@ -151,8 +169,7 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
         Lista = listOf("Revisado","Reparado", "No desea reparar", "Pendiente por confirmar")
         cliente.addCliente(textViewNombre.text.toString(),textViewCedula.text.toString(),
             textViewTelefono.text.toString(),onSuccess = { clienteId ->
-                equipo.addEquipo(clienteId,trabajador,
-                    Area,
+                equipo.addEquipo(clienteId,trabajador,Area,
                     textViewIngreso.text.toString(),
                     textViewEquipo.text.toString(),
                     textViewSerie.text.toString(),
@@ -160,7 +177,10 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
                     textViewModelo.text.toString(),
                     textViewFecha.text.toString(),textViewFecha.text.toString(),
                     textViewFalla.text.toString(),
-                    textViewObservacion.text.toString(),estado = false,
+                    textViewObservacion.text.toString(),
+                    selectedItem,
+                    "",
+                    estado = false,
                     onSuccess = { equipoId ->
                         Lista.forEach { text ->
                         tarea.addTarea(equipoId,text,"","",false)
@@ -189,6 +209,7 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
         textViewModelo.text = ""
         textViewFalla. text = ""
         textViewObservacion.text = ""
+        autoCompleteTextView.text = null
     }
 
     private fun mostrar(textoPdf: String) {

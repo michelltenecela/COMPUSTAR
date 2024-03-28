@@ -35,6 +35,8 @@ class Equipo(
         fechaFinalizacion: String,
         falla: String,
         observacion: String,
+        prioridad: String,
+        obervacionTecnico: String,
         estado: Boolean,
         onSuccess: (String) -> Unit, // Callback para manejar el éxito
         onFailure: (Exception) -> Unit // Callback para manejar el fallo
@@ -53,6 +55,8 @@ class Equipo(
             "fecha_finalizacion" to fechaFinalizacion,
             "falla" to falla,
             "observacion" to observacion,
+            "prioridad" to prioridad,
+            "obervacionTecnico" to obervacionTecnico,
             "estado" to estado
         )
 
