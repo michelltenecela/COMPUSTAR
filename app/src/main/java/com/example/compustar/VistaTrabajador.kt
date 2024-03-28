@@ -107,8 +107,12 @@ class VistaTrabajador : AppCompatActivity() {
                 val falla = document.getString("falla") ?: ""
                 val observacion = document.getString("observacion") ?: ""
                 val estado = document.getBoolean("estado") ?: false
+                val id_area = document.getString("id_area") ?: ""
+                val prioridad = document.getString("prioridad") ?: ""
+                val obervacionTecnico = document.getString("obervacionTecnico") ?: ""
                 val id = document.id
-                val equipos = Equipo(id,idCliente, idTrabajador, nIngreso, equipo, nSerie, marca, modelo, fechaIngreso, fechaFinalizacion, falla, observacion, estado)
+                val equipos = Equipo(id,idCliente, idTrabajador, nIngreso, equipo, nSerie, marca, modelo,
+                    fechaIngreso, fechaFinalizacion, falla, observacion, estado, id_area,prioridad,obervacionTecnico)
                 equipoList.add(equipos)
                 cantidad++
                 if (estado) {

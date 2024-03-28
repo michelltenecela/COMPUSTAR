@@ -55,7 +55,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
         recyclerView.adapter = adapter
 
-        adapterAreaDetalle = AreaDetalleAdapter(areaList){id, view, cantidad, reparados ->
+        adapterAreaDetalle = AreaDetalleAdapter(areaList, requireContext()){id, view, cantidad, reparados ->
             val area = areaList.find { it.id_area == id }
             if (area != null){
                 val bundle = Bundle()

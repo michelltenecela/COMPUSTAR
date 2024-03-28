@@ -46,7 +46,13 @@ class EquiposAreaAdapter(private var equipo: List<Equipo>, private val onItemCli
             holder.llTodo.background = ContextCompat.getDrawable(holder.itemView.context,R.drawable.linear_layout_border_completado)
             holder.llFoto.background = ContextCompat.getDrawable(holder.itemView.context,R.drawable.linear_layout_border_completado)
         }else{
-            holder.imgFoto.setImageResource(R.drawable.ref_laptop)
+            if (equipoDato.prioridad == "Alta"){
+                holder.imgFoto.setImageResource(R.drawable.ref_equipo_alto)
+            }else if (equipoDato.prioridad == "Media"){
+                holder.imgFoto.setImageResource(R.drawable.ref_equipo_medio)
+            }else{
+                holder.imgFoto.setImageResource(R.drawable.ref_laptop)
+            }
             holder.llTodo.background = ContextCompat.getDrawable(holder.itemView.context,R.drawable.linear_layout_border)
             holder.llFoto.background = ContextCompat.getDrawable(holder.itemView.context,R.drawable.linear_layout_border)
         }

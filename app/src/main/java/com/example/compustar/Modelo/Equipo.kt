@@ -16,7 +16,10 @@ class Equipo(
     val fechaFinalizacion: String,
     val falla: String,
     val observacion: String, // Corregido el nombre del campo
-    val estado: Boolean
+    val estado: Boolean,
+    val id_area: String,
+    val prioridad: String,
+    val obervacionTecnico: String
 ) {
     private val TAG = "FirestoreManager"
     private var db: FirebaseFirestore? = null

@@ -1,7 +1,9 @@
 package com.example.compustar.Adaptador
 
 import android.content.ContentValues
+import android.content.Context
 import android.os.Build
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,15 +13,17 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.compustar.Area_trabajo
 import com.example.compustar.Modelo.Area
 import com.example.compustar.Modelo.Trabajador
 import com.example.compustar.R
 import com.google.firebase.firestore.FirebaseFirestore
 
-class AreaDetalleAdapter(private val area: List<Area>, private val onItemClick: (String, View, Int, Int) -> Unit) : RecyclerView.Adapter<AreaDetalleAdapter.AreaDetalleViewHolder>() {
+class AreaDetalleAdapter(private val area: List<Area> , private val context: Context, private val onItemClick: (String, View, Int, Int) -> Unit) : RecyclerView.Adapter<AreaDetalleAdapter.AreaDetalleViewHolder>() {
 
 
     class AreaDetalleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -86,7 +90,7 @@ class AreaDetalleAdapter(private val area: List<Area>, private val onItemClick: 
                     adapter = TrabajadorHomeAdapter(trabajadorList){id, view ->
                         val area = trabajadorList.find { it.id_trabajador == id }
                         if (area != null){
-                            Log.i("id_area: ", area.id_trabajador)
+
                         }
                     }
 

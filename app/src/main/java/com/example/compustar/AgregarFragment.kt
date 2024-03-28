@@ -163,7 +163,7 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
     private fun Enviar(trabajador: String,Area: String){
         val cliente = Cliente()
         val equipo = Equipo("","","",
-            "","","","","","","","","",false)
+            "","","","","","","","","",false,"","","")
         val tarea = Tarea("","","","","",false)
         Lista = emptyList()
         Lista = listOf("Revisado","Reparado", "No desea reparar", "Pendiente por confirmar")
