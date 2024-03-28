@@ -15,36 +15,46 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txtNombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Edwin Rey"
-            android:textColor="#000000"
-            android:textStyle="bold" />
-
         <ImageView
             android:id="@+id/imgFoto"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/logo_trabajadores" />
+            android:layout_marginTop="10dp"
+            android:src="@drawable/foto_trabajador" />
+
+        <TextView
+            android:id="@+id/txtNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Edwin Rey Benavides"
+            android:textAlignment="viewStart"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtEquiposReparados"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:text="Equipos reparados  2/3"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textSize="10sp"/>
 
         <FrameLayout
             android:id="@+id/flprogreso"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center_horizontal">
 
             <ProgressBar
@@ -53,7 +63,7 @@
                 android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:indeterminateOnly="false"
-                android:progress="20"
+                android:progress="0"
                 android:progressDrawable="@drawable/progreso_horizontal" />
 
             <TextView

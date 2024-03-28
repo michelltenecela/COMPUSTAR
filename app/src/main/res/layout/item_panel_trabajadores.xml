@@ -24,7 +24,7 @@
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_marginLeft="10dp"
-                app:srcCompat="@drawable/logo_trabajadores" />
+                app:srcCompat="@drawable/foto_trabajador" />
 
             <TextView
                 android:id="@+id/txtNombre"
