@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -31,6 +33,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         val txtPorcentaje : TextView = view.findViewById(R.id.txtPorcentaje)
         val pbPorcentaje : ProgressBar = view.findViewById(R.id.pbtotalArea)
+        val ibtnBuscar : ImageButton = view.findViewById(R.id.ibtnBuscar)
 
         recyclerView = view.findViewById(R.id.rcvArea)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
@@ -76,14 +79,22 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         readArea()
         totalArea(txtPorcentaje,pbPorcentaje)
+
+        ibtnBuscar.setOnClickListener {
+            val fragment = BusquedaFragment()
+            val fragmentManager = requireActivity().supportFragmentManager
+            val transaction = fragmentManager.beginTransaction()
+            transaction.replace(R.id.flHome, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
     }
 
     fun readArea() {
         val db = FirebaseFirestore.getInstance()
         val collection = db?.collection("areas")
 
-        collection?.get()
-            ?.addOnCompleteListener { task ->
+        collection?.get()?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     areaList.clear()
                     for (document in task.result) {

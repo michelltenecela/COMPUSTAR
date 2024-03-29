@@ -48,7 +48,8 @@
                 android:backgroundTint="@android:color/transparent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/busqueda"
-                android:tint="#CB2027" />
+                app:tint="#CB2027" />
+
         </LinearLayout>
     </LinearLayout>
 

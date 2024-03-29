@@ -43,6 +43,7 @@ class VistaTrabajadorEquipo : AppCompatActivity() {
         val falla = getIntent().getStringExtra("falla") ?: ""
         val fecha = getIntent().getStringExtra("fecha") ?: ""
         val observacion = getIntent().getStringExtra("observacion") ?: ""
+        val ingreso = getIntent().getStringExtra("n_ingreso") ?: ""
         estado = getIntent().getBooleanExtra("estado",false)
 
         val txtCliente : TextView = findViewById(R.id.txtTitulo)
@@ -51,6 +52,7 @@ class VistaTrabajadorEquipo : AppCompatActivity() {
         val txtTrabajador : TextView = findViewById(R.id.txtTrabajador)
         val txtFecha : TextView = findViewById(R.id.txtFecha)
         val btnCompletar : Button = findViewById(R.id.btnCompletar)
+        val txtIngreso : TextView = findViewById(R.id.txtIngreso)
 
         if(estado){
             btnCompletar.setText("Reanudar")
@@ -69,6 +71,7 @@ class VistaTrabajadorEquipo : AppCompatActivity() {
         txtObservacion.text = observacion
         txtTrabajador.text = trabajador
         txtFecha.text = fecha
+        txtIngreso.text = ingreso
 
         rcvTareas = findViewById(R.id.rcvTareas)
         rcvTareas.layoutManager = FlexboxLayoutManager(this, FlexDirection.ROW, FlexWrap.WRAP)

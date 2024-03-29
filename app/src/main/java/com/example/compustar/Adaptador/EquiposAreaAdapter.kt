@@ -19,6 +19,7 @@ import com.example.compustar.Modelo.Trabajador
 import com.example.compustar.R
 import com.google.firebase.firestore.FirebaseFirestore
 import io.grpc.internal.SharedResourceHolder.Resource
+import java.util.Locale
 
 class EquiposAreaAdapter(private var equipo: List<Equipo>, private val onItemClick: (String, View, String, String) -> Unit) : RecyclerView.Adapter<EquiposAreaAdapter.EquiposAreaViewHolder>() {
 
@@ -61,16 +62,23 @@ class EquiposAreaAdapter(private var equipo: List<Equipo>, private val onItemCli
             onItemClick(equipoDato.idEquipo,it,holder.nombre.text.toString(),trabajador)
         }
 
+
         val db = FirebaseFirestore.getInstance()
-        val collection = db?.collection("clientes")
-        collection?.document(equipoDato.idCliente)?.get()?.addOnSuccessListener { task ->
-            holder.nombre.text = task.getString("nombre") ?: ""
+
+        try {
+            val collection = db?.collection("clientes")
+            collection?.document(equipoDato.idCliente)?.get()?.addOnSuccessListener { task ->
+                holder.nombre.text = task.getString("nombre") ?: ""
+            }
+
+            val collectionTrabajador = db?.collection("trabajadores")
+            collectionTrabajador?.document(equipoDato.idTrabajador)?.get()?.addOnSuccessListener { task ->
+                trabajador = task.getString("nombre") ?: ""
+            }
+        }catch (e: Exception){
+
         }
 
-        val collectionTrabajador = db?.collection("trabajadores")
-        collectionTrabajador?.document(equipoDato.idTrabajador)?.get()?.addOnSuccessListener { task ->
-            trabajador = task.getString("nombre") ?: ""
-        }
 
 
         val collectionTarea = db?.collection("tareas")
@@ -95,4 +103,6 @@ class EquiposAreaAdapter(private var equipo: List<Equipo>, private val onItemCli
     override fun getItemCount(): Int {
         return equipo.size
     }
+
+
 }

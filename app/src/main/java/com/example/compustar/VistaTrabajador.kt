@@ -62,6 +62,7 @@ class VistaTrabajador : AppCompatActivity() {
                 bundle.putExtra("fecha", data.fechaIngreso)
                 bundle.putExtra("observacion", data.observacion)
                 bundle.putExtra("estado", data.estado)
+                bundle.putExtra("n_ingreso", data.nIngreso)
                 startActivity(bundle)
             }
         }
