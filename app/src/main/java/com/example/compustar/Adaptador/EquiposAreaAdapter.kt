@@ -21,7 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import io.grpc.internal.SharedResourceHolder.Resource
 import java.util.Locale
 
-class EquiposAreaAdapter(private var equipo: List<Equipo>, private val onItemClick: (String, View, String, String) -> Unit) : RecyclerView.Adapter<EquiposAreaAdapter.EquiposAreaViewHolder>() {
+class EquiposAreaAdapter(private var equipo: List<Equipo>, private val onItemClick: (String, View, String, String, Boolean) -> Unit) : RecyclerView.Adapter<EquiposAreaAdapter.EquiposAreaViewHolder>() {
 
     class EquiposAreaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tareas: TextView = itemView.findViewById(R.id.txtTareas)
@@ -59,7 +59,12 @@ class EquiposAreaAdapter(private var equipo: List<Equipo>, private val onItemCli
         }
 
         holder.itemView.setOnClickListener {
-            onItemClick(equipoDato.idEquipo,it,holder.nombre.text.toString(),trabajador)
+            onItemClick(equipoDato.idEquipo,it,holder.nombre.text.toString(),trabajador,false)
+        }
+
+        holder.itemView.setOnLongClickListener {
+            onItemClick(equipoDato.idEquipo,it,holder.nombre.text.toString(),trabajador,true)
+            true
         }
 
 

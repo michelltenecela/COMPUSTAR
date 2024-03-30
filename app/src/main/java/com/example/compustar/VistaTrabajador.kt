@@ -50,20 +50,24 @@ class VistaTrabajador : AppCompatActivity() {
 
         rcvEquipos = findViewById(R.id.rcvEquipos)
         rcvEquipos.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        adapter = EquiposAreaAdapter(equipoList){id, view, cliente, trabajador ->
+        adapter = EquiposAreaAdapter(equipoList){id, view, cliente, trabajador, precionado ->
             val data = equipoList.find { it.idEquipo == id }
             if (data != null){
+                if (precionado){
 
-                val bundle = Intent(applicationContext,VistaTrabajadorEquipo::class.java)
-                bundle.putExtra("id_equipo", data.idEquipo)
-                bundle.putExtra("cliente", cliente)
-                bundle.putExtra("trabajador", trabajador)
-                bundle.putExtra("falla", data.falla)
-                bundle.putExtra("fecha", data.fechaIngreso)
-                bundle.putExtra("observacion", data.observacion)
-                bundle.putExtra("estado", data.estado)
-                bundle.putExtra("n_ingreso", data.nIngreso)
-                startActivity(bundle)
+                }else{
+                    val bundle = Intent(applicationContext,VistaTrabajadorEquipo::class.java)
+                    bundle.putExtra("id_equipo", data.idEquipo)
+                    bundle.putExtra("cliente", cliente)
+                    bundle.putExtra("trabajador", trabajador)
+                    bundle.putExtra("falla", data.falla)
+                    bundle.putExtra("fecha", data.fechaIngreso)
+                    bundle.putExtra("observacion", data.observacion)
+                    bundle.putExtra("estado", data.estado)
+                    bundle.putExtra("n_ingreso", data.nIngreso)
+                    startActivity(bundle)
+                }
+
             }
         }
         rcvEquipos.adapter = adapter
