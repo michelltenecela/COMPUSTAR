@@ -89,10 +89,11 @@
                 android:id="@+id/view"
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
+                android:layout_marginTop="15dp"
                 android:background="#808080"
-                app:layout_constraintBottom_toTopOf="@+id/llDatos"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
             <LinearLayout
                 android:id="@+id/llDatos"
@@ -111,13 +112,16 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="N° Ingreso">
+                    android:hint="N° Ingreso"
+                    android:textColorHint="#000000"
+                    app:boxStrokeColor="#000000"
+                    app:hintTextColor="#000000">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tvIngreso"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHighlight="#CB2027" />
+                        android:textColor="#000000" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -126,13 +130,16 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nombre">
+                    android:hint="Nombre"
+                    android:textColorHint="#000000"
+                    app:boxStrokeColor="#000000"
+                    app:hintTextColor="#000000">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tvNombre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHighlight="#CB2027" />
+                        android:textColor="#000000" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -141,13 +148,16 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Cédula">
+                    android:hint="Cédula"
+                    android:textColorHint="#000000"
+                    app:boxStrokeColor="#000000"
+                    app:hintTextColor="#000000">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tvCedula"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHighlight="#CB2027" />
+                        android:textColor="#000000" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -156,13 +166,16 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Teléfono">
+                    android:hint="Teléfono"
+                    android:textColorHint="#000000"
+                    app:boxStrokeColor="#000000"
+                    app:hintTextColor="#000000">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tvTelefono"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHighlight="#CB2027" />
+                        android:textColor="#000000" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -171,13 +184,16 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Equipo">
+                    android:hint="Equipo"
+                    android:textColorHint="#000000"
+                    app:boxStrokeColor="#000000"
+                    app:hintTextColor="#000000">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tvEquipo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHighlight="#CB2027" />
+                        android:textColor="#000000" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -186,13 +202,16 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Serie">
+                    android:hint="Serie"
+                    android:textColorHint="#000000"
+                    app:boxStrokeColor="#000000"
+                    app:hintTextColor="#000000">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tvSerie"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHighlight="#CB2027" />
+                        android:textColor="#000000" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -201,13 +220,16 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Marca">
+                    android:hint="Marca"
+                    android:textColorHint="#000000"
+                    app:boxStrokeColor="#000000"
+                    app:hintTextColor="#000000">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tvMarca"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHighlight="#CB2027" />
+                        android:textColor="#000000" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -216,13 +238,16 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Fecha de Ingreso">
+                    android:hint="Fecha de Ingreso"
+                    android:textColorHint="#000000"
+                    app:boxStrokeColor="#000000"
+                    app:hintTextColor="#000000">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tvFecha"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHighlight="#CB2027" />
+                        android:textColor="#000000" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -231,13 +256,16 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Modelo">
+                    android:hint="Modelo"
+                    android:textColorHint="#000000"
+                    app:boxStrokeColor="#000000"
+                    app:hintTextColor="#000000">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tvModelo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHighlight="#CB2027" />
+                        android:textColor="#000000" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -246,13 +274,16 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Falla">
+                    android:hint="Falla"
+                    android:textColorHint="#000000"
+                    app:boxStrokeColor="#000000"
+                    app:hintTextColor="#000000">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tvFalla"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHighlight="#CB2027" />
+                        android:textColor="#000000" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -261,13 +292,16 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Observación">
+                    android:hint="Observación"
+                    android:textColorHint="#000000"
+                    app:boxStrokeColor="#000000"
+                    app:hintTextColor="#000000">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tvObservacion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColorHighlight="#CB2027" />
+                        android:textColor="#000000" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -276,13 +310,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Prioridad">
+                    android:hint="Prioridad"
+                    android:textColorHint="#000000"
+                    app:boxStrokeColor="#000000"
+                    app:hintTextColor="#000000">
 
                     <AutoCompleteTextView
                         android:id="@+id/tvprioridad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none" />
+                        android:inputType="none"
+                        android:textColor="#000000" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
@@ -293,20 +331,37 @@
 
                     <Button
                         android:id="@+id/btnArea"
-                        android:layout_width="175dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
                         android:layout_weight="1"
+                        android:backgroundTint="#CB2027"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
                         android:text="Area"
-                        app:icon="@drawable/agregarb"
-                        app:iconPadding="12dp" />
+                        android:layout_marginRight="12dp"
+                        android:textColor="#FFFFFF"
+                        android:visibility="visible"
+                        app:cornerRadius="10dp"
+                        app:iconGravity="textStart"  />
 
                     <Button
                         android:id="@+id/btnTrabajador"
-                        android:layout_width="175dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
                         android:layout_weight="1"
+                        android:layout_marginLeft="12dp"
+                        android:backgroundTint="#CB2027"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
                         android:text="Trabajador"
-                        app:icon="@drawable/agregarb" />
+                        android:textColor="#FFFFFF"
+                        android:visibility="visible"
+                        app:cornerRadius="10dp"
+                        app:iconGravity="textStart" />
                 </LinearLayout>
 
             </LinearLayout>

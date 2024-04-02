@@ -56,7 +56,9 @@ class VistaTrabajadorEquipoDisponible : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        onBackPressed()
+        val id_area = getIntent().getStringExtra("id_area") ?: ""
+
+        readEquipo(id_area)
     }
 
     fun readEquipo(idArea: String) {

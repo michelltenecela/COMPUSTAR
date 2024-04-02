@@ -70,6 +70,8 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
         val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_dropdown_item_1line, sugerencias)
         autoCompleteTextView.setAdapter(adapter)
 
+        selectedItem = "Bajo"
+
         textViewIngreso = view.findViewById(R.id.tvIngreso)
         textViewNombre = view.findViewById(R.id.tvNombre)
         textViewCedula = view.findViewById(R.id.tvCedula)
@@ -186,6 +188,7 @@ class AgregarFragment : Fragment(R.layout.fragment_agregar) {
                         tarea.addTarea(equipoId,text,"","",false)
                         }
                         limpiar()
+                        Toast.makeText(requireContext(),"¡Registro completado con éxito!", Toast.LENGTH_LONG).show()
                     },
                     onFailure = { exception ->
                         println("Error agregando documento: ${exception.message}")
