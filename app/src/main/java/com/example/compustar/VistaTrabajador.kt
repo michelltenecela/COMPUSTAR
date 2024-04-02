@@ -108,7 +108,6 @@ class VistaTrabajador : AppCompatActivity() {
         val txtPorcentaje : TextView = findViewById(R.id.txtPorcentaje)
         val txtEquiposReparados : TextView = findViewById(R.id.txtEquiposReparados)
         val pbPorcentaje : ProgressBar = findViewById(R.id.pbArea)
-        val btnNotificacion : FrameLayout = findViewById(R.id.btnNotificacion)
         val crdNotificacion : CardView = findViewById(R.id.crdNotificacionHome)
         val txtNotificacion : TextView = findViewById(R.id.txtNotificacion)
 
