@@ -3,12 +3,15 @@ package com.example.compustar
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.compustar.Adaptador.EquiposAreaAdapter
 import com.example.compustar.Modelo.Equipo
 import com.google.firebase.firestore.FirebaseFirestore
 
+@Suppress("DEPRECATION")
 class VistaTrabajadorEquipoDisponible : AppCompatActivity() {
 
     private val equipoList = mutableListOf<Equipo>()
@@ -30,7 +33,7 @@ class VistaTrabajadorEquipoDisponible : AppCompatActivity() {
                 if (precionado){
 
                 }else{
-                    val bundle = Intent(applicationContext,VistaTrabajadorEquipo::class.java)
+                    val bundle = Intent(applicationContext,VistaTrabajadorEquipoAceptar::class.java)
                     bundle.putExtra("id_equipo", data.idEquipo)
                     bundle.putExtra("cliente", cliente)
                     bundle.putExtra("trabajador", trabajador)
@@ -41,6 +44,7 @@ class VistaTrabajadorEquipoDisponible : AppCompatActivity() {
                     bundle.putExtra("fechaF", data.fechaFinalizacion)
                     bundle.putExtra("estado", data.estado)
                     bundle.putExtra("n_ingreso", data.nIngreso)
+                    bundle.putExtra("idTrabajador", id_trabajador)
                     startActivity(bundle)
                 }
 
@@ -48,6 +52,11 @@ class VistaTrabajadorEquipoDisponible : AppCompatActivity() {
         }
         rcvEquipos.adapter = adapter
         readEquipo(id_area)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        onBackPressed()
     }
 
     fun readEquipo(idArea: String) {
@@ -82,4 +91,6 @@ class VistaTrabajadorEquipoDisponible : AppCompatActivity() {
             adapter.notifyDataSetChanged()
         }
     }
+
+
 }

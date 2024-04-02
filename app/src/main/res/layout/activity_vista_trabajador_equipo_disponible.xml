@@ -11,9 +11,6 @@
         android:id="@+id/llCabecera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/imgAtras"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_margin="8dp"
@@ -29,30 +26,16 @@
             app:srcCompat="@drawable/regresar"
             app:tint="#CB2027" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/txtTitulo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
             android:layout_weight="1"
-            app:cardBackgroundColor="#F0F0F0"
-            app:cardCornerRadius="25dp"
-            app:cardElevation="0dp">
-
-            <EditText
-                android:id="@+id/txtBusqueda"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:layout_weight="1"
-                android:background="@null"
-                android:drawableLeft="?android:attr/actionModeWebSearchDrawable"
-                android:drawablePadding="10dp"
-                android:drawableTint="#CB2027"
-                android:hint="Buscar"
-                android:textColor="#000000"
-                android:textColorHighlight="#CB2027"
-                android:textColorHint="#CB2027" />
-        </androidx.cardview.widget.CardView>
+            android:text="Equipos disponibles"
+            android:textAlignment="textStart"
+            android:textColor="#CB2027"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

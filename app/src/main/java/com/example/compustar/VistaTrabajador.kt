@@ -108,9 +108,16 @@ class VistaTrabajador : AppCompatActivity() {
         val txtPorcentaje : TextView = findViewById(R.id.txtPorcentaje)
         val txtEquiposReparados : TextView = findViewById(R.id.txtEquiposReparados)
         val pbPorcentaje : ProgressBar = findViewById(R.id.pbArea)
+        val btnNotificacion : FrameLayout = findViewById(R.id.btnNotificacion)
+        val crdNotificacion : CardView = findViewById(R.id.crdNotificacionHome)
+        val txtNotificacion : TextView = findViewById(R.id.txtNotificacion)
 
         val id_trabajador = getIntent().getStringExtra("id_trabajador") ?: ""
+        val id_area = getIntent().getStringExtra("id_area") ?: ""
         readEquipo(id_trabajador,txtEquiposReparados,txtPorcentaje,pbPorcentaje)
+
+        readEquipo(id_area,crdNotificacion,txtNotificacion)
+
     }
 
     fun readEquipo(id_trabajador:String, txtEquiposReparados: TextView, txtPorcentaje: TextView, pbPorcentaje: ProgressBar) {
