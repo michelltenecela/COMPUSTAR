@@ -67,6 +67,7 @@ class BusquedaFragment : Fragment(R.layout.fragment_busqueda) {
                     bundle.putString("falla", data.falla)
                     bundle.putString("fecha", data.fechaIngreso)
                     bundle.putString("observacion", data.observacion)
+                    bundle.putString("observacionTecnico", data.obervacionTecnico)
                     bundle.putString("n_ingreso", data.nIngreso)
                     val fragment = Equipo_PerfilFragment()
                     fragment.arguments = bundle

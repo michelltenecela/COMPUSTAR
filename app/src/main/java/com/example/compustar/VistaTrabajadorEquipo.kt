@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,9 +11,9 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.compustar.Adaptador.TareaAdapter
 import com.example.compustar.Modelo.Tarea
@@ -22,8 +21,11 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Calendar
 
 class VistaTrabajadorEquipo : AppCompatActivity() {
 
@@ -32,6 +34,9 @@ class VistaTrabajadorEquipo : AppCompatActivity() {
     private lateinit var adapter: TareaAdapter
 
     var estado = false
+
+    var mRevisado = ""
+    var mReparado = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +49,7 @@ class VistaTrabajadorEquipo : AppCompatActivity() {
         val fecha = getIntent().getStringExtra("fecha") ?: ""
         val observacion = getIntent().getStringExtra("observacion") ?: ""
         val ingreso = getIntent().getStringExtra("n_ingreso") ?: ""
+        val fechaFinal = getIntent().getStringExtra("fechaF") ?: ""
         estado = getIntent().getBooleanExtra("estado",false)
 
         val txtCliente : TextView = findViewById(R.id.txtTitulo)
@@ -51,19 +57,24 @@ class VistaTrabajadorEquipo : AppCompatActivity() {
         val txtObservacion : TextView = findViewById(R.id.txtObservacion)
         val txtTrabajador : TextView = findViewById(R.id.txtTrabajador)
         val txtFecha : TextView = findViewById(R.id.txtFecha)
+        val txtFechaF : TextView = findViewById(R.id.txtFechaF)
+        val llFechaF : LinearLayout = findViewById(R.id.llFechaF)
         val btnCompletar : Button = findViewById(R.id.btnCompletar)
         val txtIngreso : TextView = findViewById(R.id.txtIngreso)
+        val txtObservacionTecnica : TextView = findViewById(R.id.txtObservacionTecnico)
 
         if(estado){
             btnCompletar.setText("Reanudar")
             btnCompletar.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#CB2027"))
+            llFechaF.visibility =View.VISIBLE
         }else{
             btnCompletar.setText("Completar")
             btnCompletar.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#27D1B3"))
+            llFechaF.visibility =View.GONE
         }
 
         btnCompletar.setOnClickListener {
-            showDialogCompletarEquipo(id_equipo, btnCompletar)
+            showDialogCompletarEquipo(id_equipo, btnCompletar, txtFechaF)
         }
 
         txtCliente.text = cliente
@@ -72,6 +83,7 @@ class VistaTrabajadorEquipo : AppCompatActivity() {
         txtTrabajador.text = trabajador
         txtFecha.text = fecha
         txtIngreso.text = ingreso
+        txtFechaF.text = fechaFinal
 
         rcvTareas = findViewById(R.id.rcvTareas)
         rcvTareas.layoutManager = FlexboxLayoutManager(this, FlexDirection.ROW, FlexWrap.WRAP)
@@ -79,16 +91,17 @@ class VistaTrabajadorEquipo : AppCompatActivity() {
         adapter = TareaAdapter(tareaList) { id, view ->
             val data = tareaList.find { it.idTarea == id }
             if (data != null){
-                showDialogCompletar(data.idTarea,data.falla,data.estado)
+                showDialogCompletar(data.idTarea,data.falla,data.estado, data.falla)
+
             }
         }
         rcvTareas.adapter = adapter
 
-        readTarea(id_equipo)
+        readTarea(id_equipo,txtObservacionTecnica)
 
     }
 
-    fun readTarea(equipo:String) {
+    fun readTarea(equipo:String, txtObservacionTecnica: TextView) {
         val db = FirebaseFirestore.getInstance()
         val collectionTarea = db?.collection("tareas")
         collectionTarea?.whereEqualTo("id_equipo", equipo)?.get()?.addOnSuccessListener { result ->
@@ -101,8 +114,15 @@ class VistaTrabajadorEquipo : AppCompatActivity() {
                 val estado = tareaDocument.getBoolean("estado") ?: false
                 val id = tareaDocument.id
                 val tareas = Tarea(id,id_equipo,falla,descripcion,fecha_finalizacion,estado)
+                if (falla == "1. Revisado"){
+                    mRevisado = tareaDocument.getString("descripcion") ?: ""
+                }else if (falla == "2. Reparado"){
+                    mReparado = tareaDocument.getString("descripcion") ?: ""
+                }
                 tareaList.add(tareas)
             }
+            txtObservacionTecnica.text = "Revisado: \n" + mRevisado + "\n" + "Reparado: \n" + mReparado
+            tareaList.sortBy { it.falla }
             adapter.notifyDataSetChanged()
 
         }?.addOnFailureListener { exception ->
@@ -110,7 +130,7 @@ class VistaTrabajadorEquipo : AppCompatActivity() {
         }
     }
 
-    private fun showDialogCompletar(idTarea: String, tarea: String, estado: Boolean) {
+    private fun showDialogCompletar(idTarea: String, tarea: String, estado: Boolean, falla: String) {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
@@ -124,9 +144,11 @@ class VistaTrabajadorEquipo : AppCompatActivity() {
         val btnCancelar : MaterialButton = dialog.findViewById(R.id.btnFinalizarNo)
         val imgFoto : ImageView = dialog.findViewById(R.id.imgFoto)
         val imgFotoTitulo : ImageView = dialog.findViewById(R.id.imgFotoTitulo)
+        val itxtObservacion : TextInputLayout = dialog.findViewById(R.id.observacion_text_input_layout)
+        val txtObservacion : TextView = dialog.findViewById(R.id.txtObervacionT)
 
         txtTarea.setText(tarea)
-
+        itxtObservacion.visibility = View.GONE
 
         if (estado){
             imgFotoTitulo.setImageResource(R.drawable.advertencia)
@@ -146,7 +168,12 @@ class VistaTrabajadorEquipo : AppCompatActivity() {
             imgFoto.setImageResource(R.drawable.tarea_terminada)
             txtTitulo.setText("¿Has completado la tarea?")
             txtDescripcion.setText("Cuando completas una tarea se mostrara la tarea con un visto y aumentara la barra de progreso")
+
+            if (falla == "1. Revisado" || falla == "2. Reparado"){
+                itxtObservacion.visibility = View.VISIBLE
             }
+
+        }
         btnCancelar.setOnClickListener {
             dialog.dismiss()
         }
@@ -156,8 +183,10 @@ class VistaTrabajadorEquipo : AppCompatActivity() {
             val collection = db?.collection("tareas")
             val document = collection?.document(idTarea)
 
+
             val tareaData = hashMapOf<String, Any>(
-                "estado" to !estado
+                "estado" to !estado,
+                "descripcion" to txtObservacion.text.toString()
             )
 
             document?.update(tareaData)?.addOnSuccessListener {
@@ -173,7 +202,7 @@ class VistaTrabajadorEquipo : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun showDialogCompletarEquipo(idEquipo: String, btnComple : Button) {
+    private fun showDialogCompletarEquipo(idEquipo: String, btnComple : Button, fechaF : TextView) {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
@@ -220,9 +249,13 @@ class VistaTrabajadorEquipo : AppCompatActivity() {
             val db = FirebaseFirestore.getInstance()
             val collection = db?.collection("equipos")
             val document = collection?.document(idEquipo)
+            val cal = Calendar.getInstance()
+            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+            val horaActual = sdf.format(cal.time)
 
             val equipoData = hashMapOf<String, Any>(
-                "estado" to !estado
+                "estado" to !estado,
+                "fecha_finalizacion" to horaActual
             )
 
             document?.update(equipoData)?.addOnSuccessListener {
@@ -230,6 +263,7 @@ class VistaTrabajadorEquipo : AppCompatActivity() {
                 if (!estado){
                     btnComple.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#CB2027"))
                     btnComple.setText("Reanudar")
+                    fechaF.text = horaActual
                 }else{
                     btnComple.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#27D1B3"))
                     btnComple.setText("Completar")

@@ -28,6 +28,9 @@ class Equipo_PerfilFragment : Fragment(R.layout.fragment_equipo_perfil) {
     private lateinit var rcvTareas: RecyclerView
     private lateinit var adapter: TareaAdapter
 
+    var mRevisado = ""
+    var mReparado = ""
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -46,6 +49,7 @@ class Equipo_PerfilFragment : Fragment(R.layout.fragment_equipo_perfil) {
         val txtTrabajador : TextView = view.findViewById(R.id.txtTrabajador)
         val txtFecha : TextView = view.findViewById(R.id.txtFecha)
         val txtIngreso : TextView = view.findViewById(R.id.txtIngreso)
+        val txtObservacionTecnica : TextView = view.findViewById(R.id.txtObservacionTecnico)
 
         txtCliente.text = cliente
         txtFalla.text = falla
@@ -62,11 +66,11 @@ class Equipo_PerfilFragment : Fragment(R.layout.fragment_equipo_perfil) {
         }
         rcvTareas.adapter = adapter
 
-        readTarea(id_equipo)
+        readTarea(id_equipo, txtObservacionTecnica)
 
     }
 
-    fun readTarea(equipo:String) {
+    fun readTarea(equipo:String, txtObservacionTecnica: TextView) {
         val db = FirebaseFirestore.getInstance()
         val collectionTarea = db?.collection("tareas")
         collectionTarea?.whereEqualTo("id_equipo", equipo)?.get()?.addOnSuccessListener { result ->
@@ -79,8 +83,15 @@ class Equipo_PerfilFragment : Fragment(R.layout.fragment_equipo_perfil) {
                 val estado = tareaDocument.getBoolean("estado") ?: false
                 val id = tareaDocument.id
                 val tareas = Tarea(id,id_equipo,falla,descripcion,fecha_finalizacion,estado)
+                if (falla == "1. Revisado"){
+                    mRevisado = tareaDocument.getString("descripcion") ?: ""
+                }else if (falla == "2. Reparado"){
+                    mReparado = tareaDocument.getString("descripcion") ?: ""
+                }
                 tareaList.add(tareas)
             }
+            txtObservacionTecnica.text = "Revisado: \n" + mRevisado + "\n" + "Reparado: \n" + mReparado
+            tareaList.sortBy { it.falla }
             adapter.notifyDataSetChanged()
 
         }?.addOnFailureListener { exception ->

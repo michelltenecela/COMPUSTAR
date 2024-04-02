@@ -63,6 +63,8 @@ class VistaTrabajador : AppCompatActivity() {
                     bundle.putExtra("falla", data.falla)
                     bundle.putExtra("fecha", data.fechaIngreso)
                     bundle.putExtra("observacion", data.observacion)
+                    bundle.putExtra("observacionTecnico", data.obervacionTecnico)
+                    bundle.putExtra("fechaF", data.fechaFinalizacion)
                     bundle.putExtra("estado", data.estado)
                     bundle.putExtra("n_ingreso", data.nIngreso)
                     startActivity(bundle)
@@ -77,6 +79,7 @@ class VistaTrabajador : AppCompatActivity() {
         val pbPorcentaje : ProgressBar = findViewById(R.id.pbArea)
 
         val id_trabajador = getIntent().getStringExtra("id_trabajador") ?: ""
+        val id_area = getIntent().getStringExtra("id_area") ?: ""
         readEquipo(id_trabajador,txtEquiposReparados,txtPorcentaje,pbPorcentaje)
     }
 
