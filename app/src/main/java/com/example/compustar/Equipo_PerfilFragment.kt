@@ -42,12 +42,14 @@ class Equipo_PerfilFragment : Fragment(R.layout.fragment_equipo_perfil) {
         val fecha = bundle?.getString("fecha") ?: ""
         val observacion = bundle?.getString("observacion") ?: ""
         val ingreso = bundle?.getString("n_ingreso") ?: ""
+        val fechaFinal = bundle?.getString("fechaF") ?: ""
 
         val txtCliente : TextView = view.findViewById(R.id.txtTitulo)
         val txtFalla : TextView = view.findViewById(R.id.txtFalla)
         val txtObservacion : TextView = view.findViewById(R.id.txtObservacion)
         val txtTrabajador : TextView = view.findViewById(R.id.txtTrabajador)
         val txtFecha : TextView = view.findViewById(R.id.txtFecha)
+        val txtFechaF : TextView = view.findViewById(R.id.txtFechaF)
         val txtIngreso : TextView = view.findViewById(R.id.txtIngreso)
         val txtObservacionTecnica : TextView = view.findViewById(R.id.txtObservacionTecnico)
 
@@ -57,6 +59,7 @@ class Equipo_PerfilFragment : Fragment(R.layout.fragment_equipo_perfil) {
         txtTrabajador.text = trabajador
         txtFecha.text = fecha
         txtIngreso.text = ingreso
+        txtFechaF.text = fechaFinal
 
         rcvTareas = view.findViewById(R.id.rcvTareas)
         rcvTareas.layoutManager = FlexboxLayoutManager(requireContext(), FlexDirection.ROW, FlexWrap.WRAP)

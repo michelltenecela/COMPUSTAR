@@ -93,6 +93,7 @@ class Area_trabajo : Fragment(R.layout.fragment_area_trabajo) {
                     bundle.putString("observacion", data.observacion)
                     bundle.putString("observacionTecnico", data.obervacionTecnico)
                     bundle.putString("n_ingreso", data.nIngreso)
+                    bundle.putString("fechaF", data.fechaFinalizacion)
                     val fragment = Equipo_PerfilFragment()
                     fragment.arguments = bundle
                     val fragmentManager = requireActivity().supportFragmentManager
