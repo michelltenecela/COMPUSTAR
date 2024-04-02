@@ -38,12 +38,54 @@
                 android:textSize="34sp"
                 android:textStyle="bold" />
 
+            <FrameLayout
+                android:id="@+id/btnNotificacion"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp">
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/notificacion__1_"
+                    app:tint="#CB2027" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/crdNotificacionHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="4dp"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="#E91E63"
+                    app:cardCornerRadius="20dp">
+
+                    <TextView
+                        android:id="@+id/txtNotificacion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:text="0"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp" />
+                </androidx.cardview.widget.CardView>
+
+            </FrameLayout>
+
             <ImageView
                 android:id="@+id/imgMenu"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginRight="10dp"
+                android:padding="8dp"
                 android:src="@drawable/menu"
                 app:tint="#CB2027" />
 

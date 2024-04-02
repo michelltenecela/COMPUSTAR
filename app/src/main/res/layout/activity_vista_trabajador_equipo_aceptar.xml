@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".VistaTrabajadorEquipo">
+    tools:context=".VistaTrabajadorEquipoAceptar">
 
     <LinearLayout
         android:id="@+id/llHome"
@@ -314,7 +314,7 @@
         android:backgroundTint="#27D1B3"
         android:insetTop="0dp"
         android:insetBottom="0dp"
-        android:text="Completar"
+            android:text="Dar mantenimiento"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:cornerRadius="10dp"
